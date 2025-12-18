@@ -1,0 +1,226 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Ride | GET GOING SYSTEM</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/user.css' %}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <a href="index.html">
+                    <span class="logo-text">GET GOING SYSTEM</span>
+                </a>
+            </div>
+            <div class="navbar-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar-menu">
+                <li class="navbar-item"><a href="index.html" class="navbar-link">Home</a></li>
+                <li class="navbar-item"><a href="book_ride.html" class="navbar-link active">Book a Ride</a></li>
+                <li class="navbar-item"><a href="available_rides.html" class="navbar-link">Available Rides</a></li>
+                <li class="navbar-item"><a href="ride_history.html" class="navbar-link">Ride History</a></li>
+                <li class="navbar-item"><a href="profile.html" class="navbar-link">Profile</a></li>
+                <li class="navbar-item"><a href="logout.html" class="navbar-link">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <section class="booking-section">
+            <div class="booking-container">
+                <h1 class="section-title">Book a Ride</h1>
+                <p class="section-description">Enter your trip details to find available rides nearby.</p>
+                
+                <!-- Booking Form -->
+                <form id="booking-form" class="booking-form" action="/find-rides/" method="POST">
+                    <div class="form-group">
+                        <label for="source">
+                            <i class="fas fa-map-marker-alt"></i> Source Location
+                        </label>
+                        <input type="text" id="source" name="source" placeholder="Enter pickup location" required>
+                        <span class="error-message" id="source-error"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="destination">
+                            <i class="fas fa-map-pin"></i> Destination Location
+                        </label>
+                        <input type="text" id="destination" name="destination" placeholder="Enter drop-off location" required>
+                        <span class="error-message" id="destination-error"></span>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date">
+                                <i class="fas fa-calendar-alt"></i> Date
+                            </label>
+                            <input type="date" id="date" name="date" required>
+                            <span class="error-message" id="date-error"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="time">
+                                <i class="fas fa-clock"></i> Time
+                            </label>
+                            <input type="time" id="time" name="time" required>
+                            <span class="error-message" id="time-error"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" class="btn-submit" id="find-rides-btn">
+                            <i class="fas fa-search"></i> Find Rides
+                        </button>
+                    </div>
+                </form>
+                
+        
+                <!-- Loader Animation (hidden by default) -->
+                <div class="loader-container" id="loader">
+                    <div class="loader"></div>
+                    <p>Searching for rides...</p>
+                </div>
+                
+                <!-- Success Message (hidden by default) -->
+                <div class="success-message" id="success-message">
+                    <i class="fas fa-check-circle"></i>
+                    <p>Great! We found some rides for you.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Suggested Rides Section -->
+        <section class="suggested-rides">
+            <div class="suggested-container">
+                <h2 class="section-title">Suggested Rides</h2>
+                
+                <div id="rideCardsContainer" class="ride-cards">
+                    <!-- Ride Card 1 -->
+                    <div class="ride-card">
+                        <div class="driver-info">
+                            <div class="driver-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="driver-details">
+                                <h3>John Doe</h3>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.8</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ride-details">
+                            <div class="detail-item">
+                                <i class="fas fa-users"></i>
+                                <span>3 seats available</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-dollar-sign"></i>
+                                <span>$12.50 estimate</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-clock"></i>
+                                <span>Arriving in 5 mins</span>
+                            </div>
+                        </div>
+                        <button class="btn-request">Request Ride</button>
+                    </div>
+                    
+                    <!-- Ride Card 2 -->
+                    <div class="ride-card">
+                        <div class="driver-info">
+                            <div class="driver-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="driver-details">
+                                <h3>Sarah Johnson</h3>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.6</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ride-details">
+                            <div class="detail-item">
+                                <i class="fas fa-users"></i>
+                                <span>1 seat available</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-dollar-sign"></i>
+                                <span>$10.75 estimate</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-clock"></i>
+                                <span>Arriving in 8 mins</span>
+                            </div>
+                        </div>
+                        <button class="btn-request">Request Ride</button>
+                    </div>
+                    
+                    <!-- Ride Card 3 -->
+                    <div class="ride-card">
+                        <div class="driver-info">
+                            <div class="driver-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="driver-details">
+                                <h3>Michael Chen</h3>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.9</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ride-details">
+                            <div class="detail-item">
+                                <i class="fas fa-users"></i>
+                                <span>2 seats available</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-dollar-sign"></i>
+                                <span>$14.20 estimate</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-clock"></i>
+                                <span>Arriving in 12 mins</span>
+                            </div>
+                        </div>
+                        <button class="btn-request">Request Ride</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2025 GET GOING SYSTEM. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="privacy.html">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="{% static 'js/user.js' %}"></script>
+</body>
+</html>

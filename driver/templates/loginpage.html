@@ -1,0 +1,456 @@
+<!--created by: Dhairya Patel
+     time: 27/01/25 5:41-->
+     {%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>LOGIN PAGE</title>
+   
+    <style>
+         html,body
+         {
+            margin: 0;
+            padding: 0;
+            font-size: 2vw;
+         }
+        #container
+        {
+        
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            position: absolute;
+            margin: 0;
+            object-fit: cover;
+        }
+        #container1
+        {
+            width: 50%;
+            padding-bottom: 2%;
+            height: auto;
+            background-color: #ddd9d9;
+            position: absolute;
+            z-index: 1;
+           margin: auto;
+        }
+        #bgimage
+        {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            object-fit: cover;
+            z-index: -1;
+        }
+       
+       #middheader
+        {
+            margin-top: 0;
+            top: 0;
+            left: 0;
+            position: relative;
+            background-color: rgb(242, 242, 242);
+            font-size: 0.5rem;
+            width: 100%;
+            height: 15%;
+            font-family: Arial, Helvetica, sans-serif;
+            color: black;
+            text-align: center;
+            overflow: hidden;
+        }
+      
+        #inputcontainer
+        {
+            position: relative;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 50%;
+            background-color:  #ddd9d9;
+            display: flex;
+            flex-direction: column;
+        }
+        .inputtextcontainer
+        {
+            position: relative;
+            
+            padding: 0;
+            width: 100%;
+            height: 1.5rem;
+            margin-top: 2.9%;
+        }
+        .inputtext
+        {
+            padding-left: 1%;
+            width: 60%;
+            height: 100%;
+            margin-left: auto;
+            border: 0.06rem solid rgba(0, 0, 0, 0.739);
+            border-radius: 0.2rem;
+            outline: none;
+            background-color:  #ddd9d9;
+            font-size: 0.6rem;
+        }
+        .placeholdertext
+        {
+           padding-left: 1%;
+           padding-right: 1%;
+           left: 21%;
+           top: 30%;
+           position: absolute;
+           font-size: 0.5rem;
+           font-family: Arial, Helvetica, sans-serif;
+           color: rgb(137, 136, 136);
+           pointer-events: none;
+           transition: 250ms ease;
+           background-color: transparent;
+        }
+        .buttoncontainer
+        {
+            position: relative;
+            width: 100%;
+            margin-top: 5%;
+            
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+           
+        }
+        #googlelogin
+        {
+           width: 100%;
+           display: relative;
+           margin-top: 3%;
+           display: flex;
+           flex-direction: row;
+           justify-content: center;
+           
+        }
+        .gloginbtn
+        {
+            width: 1rem;
+            height: 1rem;
+            border-radius: 100%;
+            background-image: url("gbutton.jpeg") no-repeat;
+            background-size: 200%;
+            background-position: center; 
+            background-repeat: no-repeat;
+            
+        }
+       
+        @media (min-width: 320px) and (max-width: 768px) and (orientation: portrait)
+        {
+            
+            #container1
+            {
+                 width: 90%;
+                 height: auto;
+            }
+            #middheader
+            {
+               height: 10%;
+               font-size: 1rem;
+            }
+            .inputtextcontainer
+            {
+                height: 3.5rem;
+            }
+            .placeholdertext
+            {
+                font-size: 1rem;
+            }
+            .gloginbtn
+        {
+            width: 2rem;
+            height: 2rem;
+        }
+        
+    }
+        
+    </style>
+   
+</head>
+<body>
+   <div id="container">
+       <img src="{% static 'images/bgimage.jpg'%}" id="bgimage">
+   </div>
+   <div id="container1">
+       <div id="middheader">
+            <h2>GET GOING<h2>
+       </div>
+       <form method="post">
+        {% csrf_token %}
+        <div id="inputcontainer">
+            <div style="margin-top: 4%;" class="inputtextcontainer">
+                <div class="placeholdertext">Enter Email</div>
+                <input autocomplete="off" class="inputtext" name="email" type="text">
+            </div>
+            <div class="inputtextcontainer">
+                <div class="placeholdertext">Enter Password</div>
+                <input autocomplete="off" name="password" class="inputtext" type="password">
+            </div>
+        </div>
+        <div class="buttoncontainer">
+            <input type="submit" value="submit">
+        </div>
+    </form>
+      <div id="googlelogin">
+          <button class="gloginbtn" id="google-signin-btn"></button>
+          <button style="margin-left: 2%;" class="gloginbtn"></button>
+    
+      </div>
+   </div>
+   <script>
+    const middleElement = () => {
+     const abc = document.getElementById('container1');
+     abc.style.marginLeft = window.innerWidth/2 - abc.offsetWidth/2 + 'px';
+     abc.style.marginTop = window.innerHeight/2 - abc.offsetHeight/2 + 'px';
+
+     const inputtext = document.getElementsByClassName('inputtext');
+     for(let i=0;i<inputtext.length;i++)
+     {
+          inputtext[i].style.marginLeft = abc.offsetWidth/2 - inputtext[i].offsetWidth/2 + 'px';
+     }
+     
+    }
+    middleElement();
+    window.addEventListener('resize', middleElement);
+
+    const inputs = document.querySelectorAll('.inputtext');
+
+    inputs.forEach(input => {
+        const placeholder = input.previousElementSibling;
+       
+        input.addEventListener('input',()=>{
+            if(event.target.value.trim()==="")
+            {
+
+            }
+            else{
+                placeholder.style.transform='translateY(-135%)';
+                input.style.borderColor = "rgb(31, 178, 31)";
+                placeholder.style.color = "rgb(31, 178, 31)";
+                placeholder.style.backgroundColor = "#ddd9d9";
+            }
+        });
+        input.addEventListener('focus',()=>{
+          
+            placeholder.style.transform='translateY(-135%)';
+            input.style.borderColor = "rgb(31, 178, 31)";
+            placeholder.style.color = "rgb(31, 178, 31)";
+            placeholder.style.backgroundColor = "#ddd9d9";
+           
+        });
+        input.addEventListener('blur',()=>{
+            let textvalue = event.target.value;
+            if(textvalue.trim() === "")
+        {
+            placeholder.style.transform='translateY(0)';
+            input.style.borderColor = "rgba(0, 0, 0, 0.739)";
+            placeholder.style.color = "rgb(137, 136, 136)";
+        }
+           
+        });
+    });
+ //run when media query fired
+//  const mediaQuery = window.matchMedia('(min-width: 320px) and (max-width: 768px) and (orientation: portrait)');
+
+//  function handleMediaQuery(event)
+//  {
+//     if(event.matches)
+//    {
+//     inputs.forEach(input => {
+//     const placeholder = input.previousElementSibling;
+//     input.addEventListener('focus',()=>{
+      
+//         placeholder.style.transform='translateY(-250%)';
+//         input.style.borderColor = "rgb(31, 178, 31)";
+//         placeholder.style.color = "rgb(31, 178, 31)";
+//         placeholder.style.backgroundColor = "#ddd9d9";
+       
+//     });
+//     input.addEventListener('blur',()=>{
+//         placeholder.style.transform='translateY(0)';
+//         input.style.borderColor = "rgba(0, 0, 0, 0.739)";
+//         placeholder.style.color = "rgb(137, 136, 136)";
+//     });
+// });
+//    }
+//    else
+//    {
+//      //code when media query not fired
+//    }
+//  }
+
+//  mediaQuery.addEventListener('change',handleMediaQuery);
+//  handleMediaQuery(mediaQuery);
+  </script>
+  {% comment %} <script defer type="module">
+// Import Firebase modules from the CDN
+// Import Firebase modules from the CDN
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
+import { getAuth, signInWithRedirect, GoogleAuthProvider, getRedirectResult } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
+
+// Your Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCxCoOVNFRf_9APuMzsa3qdKDuwoNyFADY",
+  authDomain: "car-sharing-df3cf.firebaseapp.com",
+  projectId: "car-sharing-df3cf",
+  storageBucket: "car-sharing-df3cf.firebasestorage.app",
+  messagingSenderId: "84006336225",
+  appId: "1:84006336225:web:15ae222fd3662a341429a0",
+  measurementId: "G-NPB3KPYZNV"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+auth.languageCode = "en";
+const provider = new GoogleAuthProvider();
+
+// Ensure the script runs after the DOM is fully loaded
+document.addEventListener("DOMContentLoaded", () => {
+  // Attach event listener to the sign-in button
+  const signInButton = document.getElementById("google-signin-btn");
+  if (signInButton) {
+    signInButton.addEventListener("click", () => {
+      console.log("Button clicked, starting redirect-based sign-in...");
+      // Initiate the sign-in with redirect
+      signInWithRedirect(auth, provider)
+        .catch((error) => {
+          console.error("Error initiating redirect:", error);
+          alert("Failed to start sign-in: " + error.message);
+        });
+    });
+  } else {
+    console.error("Sign-in button not found in the DOM.");
+  }
+
+  // Handle the redirect result once the user returns
+  console.log("Checking for redirect result...");
+  getRedirectResult(auth)
+    .then((result) => {
+      if (result && result.user) {
+        console.log("Redirect result returned successfully.");
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken; // Access token for API calls
+        const user = result.user; // User info
+        console.log("User successfully signed in:", user.displayName, user.email);
+        console.log("Access Token:", token);
+
+        // Optionally, get ID token for backend verification
+        user.getIdToken().then((idToken) => {
+          console.log("ID Token:", idToken);
+          // Send ID token to your backend here (e.g., via fetch)
+          // Example: sendToBackend(idToken);
+        });
+
+        // Redirect to a success page (ensure this URL exists)
+       
+      } else {
+        console.log("No redirect result returned. This is expected on initial page load or if sign-in wasn’t completed.");
+      }
+    })
+    .catch((error) => {
+      console.error("Error occurred during redirect result:", error.code, error.message);
+      alert("Authentication failed: " + error.message);
+    });
+}); {% endcomment %}
+
+{% comment %} const provider = new GoogleAuthProvider();
+
+// Handle redirect result when page loads
+document.addEventListener('DOMContentLoaded', () => {
+    getRedirectResult(auth)
+        .then((result) => {
+            if (result && result.user) {
+                console.log("Redirect result received:", result);
+                const user = result.user;
+
+                // ID token processing
+                user.getIdToken().then((idToken) => {
+                    console.log("ID Token:", idToken);
+                });
+
+                // User information
+                const displayName = user.displayName;
+                const email = user.email;
+                const emailVerified = user.emailVerified;
+                console.log(`User: ${displayName}, Email: ${email}, Verified: ${emailVerified}`);
+                alert(`User: ${displayName}, Email: ${email}, Verified: ${emailVerified}`);
+            }
+        })
+        .catch((error) => {
+            console.error("Error:", error.code, error.message);
+            if (error.code === 'auth/popup-closed-by-user') {
+                alert("Authentication was cancelled. Please try again.");
+            } else if (error.code === 'auth/popup-blocked') {
+                alert("Popup blocked. Please enable popups for this site.");
+            } else {
+                alert("Login failed: " + error.message);
+            }
+        });
+});
+
+// Google Login function
+window.googleLogin = function googleLogin() {
+    console.log("Starting Google Login...");
+    signInWithRedirect(auth, provider)
+        .catch((error) => {
+            console.error("Redirect error:", error);
+            alert("Login initiation failed: " + error.message);
+        });
+}; {% endcomment %}
+{% comment %} function sendDataToDjango(idToken)
+{
+    alert(idToken);
+    fetch('/customer/login/',{
+        method: "POST",
+        headers:{
+            'Content-Type' : 'application/json',
+            'Accept' : 'application/json',
+            'X-CSRFToken':getCSRFToken(),
+        },
+        body: JSON.stringify({token: idToken})
+    })
+    .then(response=>{
+        if(!response.ok)
+        {
+            return response.text().then(text=>{
+                throw new Error(text);
+            });
+        }
+
+        const contentType = response.headers.get('Content-Type');
+        if(contentType && contentType.includes('application/json'))
+        {
+            return response.json();
+        }
+        else{
+            return response.text().then(text=>{
+                throw new Error("Expected JSON, but got HTML or other content: "+text)
+            });
+        }
+    })
+    .then(data=>{
+        console.log("server response:",data);
+        alert(data.message);
+        
+    })
+    .catch(error=>{
+        console.error("Error sending token: ",error);
+        alert("Error: "+error.message);
+
+    });
+}
+function getCSRFToken() {
+    return document.cookie.split('; ')
+        .find(row => row.startsWith('csrftoken'))
+        ?.split('=')[1];
+} {% endcomment %}
+  </script>
+</body>
+</html>

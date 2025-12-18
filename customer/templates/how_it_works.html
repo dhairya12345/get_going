@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GET GOING SYSTEM - How It Works</title>
+    <link rel="stylesheet" href="how_it_works.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">GET GOING</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="how_it_works.html" class="active">How It Works</a>
+                <a href="driver_dashboard.html">Drive</a>
+                <a href="rider_dashboard.html">Ride</a>
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-outline">Login</a>
+                    <a href="register.html" class="btn btn-primary">Sign Up</a>
+                </div>
+            </div>
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="how_it_works.html" class="active">How It Works</a>
+        <a href="driver_dashboard.html">Drive</a>
+        <a href="rider_dashboard.html">Ride</a>
+        <div class="mobile-auth">
+            <a href="login.html" class="btn btn-outline">Login</a>
+            <a href="register.html" class="btn btn-primary">Sign Up</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>How GET GOING Works</h1>
+            <p>Connecting drivers with empty seats to passengers heading the same way</p>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>Simple Steps to Share Your Ride</h2>
+                <p>Whether you're a driver or a passenger, GET GOING makes ride-sharing easy and efficient</p>
+            </div>
+
+            <!-- Tabs for Driver/Passenger -->
+            <div class="role-tabs">
+                <button class="tab-btn active" data-tab="driver">I'm a Driver</button>
+                <button class="tab-btn" data-tab="passenger">I'm a Passenger</button>
+            </div>
+
+            <!-- Driver Steps -->
+            <div class="steps-container active" id="driver-steps">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h3>Plan Your Trip</h3>
+                        <p>Enter your departure and destination points along with your travel date and time.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <i class="fas fa-chair"></i>
+                        <h3>Set Available Seats</h3>
+                        <p>Specify how many seats you have available in your vehicle.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <h3>Set Your Price</h3>
+                        <p>Determine how much you'd like to charge per seat or for the entire ride.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <i class="fas fa-users"></i>
+                        <h3>Match with Passengers</h3>
+                        <p>Our system will match you with passengers traveling the same way.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <i class="fas fa-car"></i>
+                        <h3>Enjoy the Ride</h3>
+                        <p>Pick up your passengers and enjoy the company while offsetting your travel costs.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Passenger Steps -->
+            <div class="steps-container" id="passenger-steps">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <i class="fas fa-search-location"></i>
+                        <h3>Search for Rides</h3>
+                        <p>Enter your travel details to find drivers going your way.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <i class="fas fa-list-ul"></i>
+                        <h3>Browse Options</h3>
+                        <p>View available rides with details like price, departure time, and driver ratings.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Book Your Seat</h3>
+                        <p>Select your preferred ride and confirm your booking.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <i class="fas fa-comments"></i>
+                        <h3>Communicate with Driver</h3>
+                        <p>Coordinate pickup details through our secure messaging system.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <i class="fas fa-smile"></i>
+                        <h3>Enjoy Your Ride</h3>
+                        <p>Meet your driver and enjoy a comfortable, affordable journey.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Choose GET GOING?</h2>
+                <p>Experience the advantages of smart ride-sharing</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <i class="fas fa-wallet"></i>
+                    <h3>Save Money</h3>
+                    <p>Share travel costs between driver and passengers.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Eco-Friendly</h3>
+                    <p>Reduce carbon emissions by sharing rides.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-user-friends"></i>
+                    <h3>Meet People</h3>
+                    <p>Connect with like-minded travelers in your area.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Safe & Secure</h3>
+                    <p>Verified users and secure payment system.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Get Going?</h2>
+            <p>Join thousands of users already enjoying smart ride-sharing</p>
+            <div class="cta-buttons">
+                <a href="register.html?role=driver" class="btn btn-primary btn-large">Become a Driver</a>
+                <a href="register.html?role=passenger" class="btn btn-secondary btn-large">Find a Ride</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>GET GOING</h3>
+                    <p>Smart ride-sharing platform connecting drivers with passengers traveling the same way.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="how_it_works.html">How It Works</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="safety.html">Safety Guidelines</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 GET GOING SYSTEM. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="how_it_works.js"></script>
+</body>
+</html>

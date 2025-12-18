@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Going - Vehicle Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #10b981;
+            --accent-color: #f59e0b;
+            --danger-color: #ef4444;
+            --dark-color: #1f2937;
+            --light-color: #ffffff;
+            --gray-color: #e5e7eb;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --border-radius: 8px;
+            --spacing-unit: 2rem;
+            --compact-spacing: 0.75rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: #f9fafb;
+            color: var(--dark-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .main-content {
+            padding: var(--spacing-unit);
+        }
+
+        .welcome-banner {
+            background: linear-gradient(135deg, var(--primary-color), #3b82f6);
+            color: var(--light-color);
+            padding: var(--spacing-unit);
+            border-radius: var(--border-radius);
+            margin-bottom: calc(var(--spacing-unit) * 1.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .welcome-banner:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .welcome-text h1 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .welcome-text p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .vehicle-section {
+            background: var(--light-color);
+            padding: calc(var(--spacing-unit) * 0.75);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: calc(var(--spacing-unit) * 1.5);
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        .vehicle-section h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: var(--compact-spacing);
+        }
+
+        .vehicle-section p {
+            font-size: 0.95rem;
+            color: #6b7280;
+            margin-bottom: var(--compact-spacing);
+        }
+
+        .vehicle-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--compact-spacing);
+        }
+
+        .vehicle-card {
+            background: var(--light-color);
+            border: 1px solid var(--gray-color);
+            border-radius: var(--border-radius);
+            padding: var(--compact-spacing);
+            transition: all 0.3s ease;
+        }
+
+        .vehicle-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .vehicle-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: var(--compact-spacing);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--compact-spacing);
+        }
+
+        .form-group {
+            margin-bottom: var(--compact-spacing);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.6rem 0.9rem;
+            border: 1px solid var(--gray-color);
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+            outline: none;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .ride-actions {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: var(--spacing-unit);
+        }
+
+        .save-btn {
+            background: var(--primary-color);
+            color: var(--light-color);
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .save-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .cancel-btn {
+            background: var(--light-color);
+            color: var(--danger-color);
+            border: 1px solid var(--danger-color);
+            padding: 0.6rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cancel-btn:hover {
+            background: rgba(239, 68, 68, 0.1);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @media (max-width: 1024px) {
+            .form-grid, .vehicle-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .welcome-banner {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.25rem;
+            }
+
+            .ride-actions {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .main-content {
+                padding: calc(var(--spacing-unit) * 0.75);
+            }
+
+            .welcome-text h1 {
+                font-size: 1.5rem;
+            }
+
+            .welcome-text p {
+                font-size: 0.9rem;
+            }
+
+            .vehicle-section h2 {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <div class="welcome-banner">
+            <div class="welcome-text">
+                <h1>Vehicle Details</h1>
+                <p>Manage your vehicle information for Get Going</p>
+            </div>
+        </div>
+        <div class="vehicle-section">
+            <h2>Vehicle Information</h2>
+            <p>Update your vehicle details to ensure a smooth driving experience.</p>
+            <div class="vehicle-grid">
+                <div class="vehicle-card">
+                    <h3>Vehicle Details</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="vehicle-make">Vehicle Make</label>
+                            <input type="text" id="vehicle-make" placeholder="e.g., Toyota" aria-label="Vehicle Make" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="vehicle-model">Vehicle Model</label>
+                            <input type="text" id="vehicle-model" placeholder="e.g., Innova" aria-label="Vehicle Model" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="vehicle-type">Vehicle Type</label>
+                            <select id="vehicle-type" aria-label="Vehicle Type">
+                                <option selected>Sedan</option>
+                                <option>SUV</option>
+                                <option>Hatchback</option>
+                                <option>Minivan</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="vehicle-ac">Air Conditioning</label>
+                            <select id="vehicle-ac" aria-label="Air Conditioning">
+                                <option selected>AC</option>
+                                <option>Non-AC</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="vehicle-registration">Registration Number</label>
+                            <input type="text" id="vehicle-registration" placeholder="e.g., KA01AB1234" aria-label="Registration Number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="vehicle-color">Color</label>
+                            <input type="text" id="vehicle-color" placeholder="e.g., White" aria-label="Vehicle Color" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="vehicle-capacity">Seating Capacity</label>
+                            <input type="number" id="vehicle-capacity" placeholder="e.g., 5" min="1" max="10" aria-label="Seating Capacity" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="vehicle-card">
+                    <h3>Additional Notes</h3>
+                    <div class="form-group">
+                        <label for="vehicle-notes">Notes</label>
+                        <textarea id="vehicle-notes" rows="4" placeholder="Add any additional information about your vehicle..." aria-label="Vehicle Notes"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="ride-actions">
+                <button class="save-btn" onclick="saveVehicleDetails()">Save Changes</button>
+                <button class="cancel-btn" onclick="alert('Changes discarded.')">Discard</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function getCSRFToken() {
+        return document.cookie.split('; ')
+            .find(row => row.startsWith('csrftoken'))
+            ?.split('=')[1];
+    }
+        function uploadform(){
+            const data = new URLSearchParams();
+            data.append('company',document.getElementById('vehicle-make').value)
+            data.append('type',document.getElementById('vehicle-model').value)
+            data.append('ac',document.getElementById('vehicle-ac').value)
+            data.append('number_plate',document.getElementById('vehicle-registration').value)
+            data.append('color',document.getElementById('vehicle-color').value)
+            data.append('avl_seats',document.getElementById('vehicle-capacity').value)
+            fetch('/driver/login/dashboard/vehicledetails',{
+                method: 'POST',
+                headers:{
+                    'Content-Type' : 'application/x-www-form-urlencoded',
+                    'X-CSRFToken' : getCSRFToken()
+                },
+                body: data
+            })
+            .then(response => response.json())
+            .then(data=>{
+                console.log('Success: ',data)
+                alert("data updated");
+                if(data.status === 'ok')
+                {
+                    location.reload();
+                }
+            }).catch(error => {
+                alert("data is not updated")
+            })
+        }
+        function saveVehicleDetails() {
+            const make = document.getElementById('vehicle-make').value.trim();
+            const model = document.getElementById('vehicle-model').value.trim();
+            const type = document.getElementById('vehicle-type').value;
+            const ac = document.getElementById('vehicle-ac').value;
+            const registration = document.getElementById('vehicle-registration').value.trim();
+            const color = document.getElementById('vehicle-color').value.trim();
+            const capacity = document.getElementById('vehicle-capacity').value.trim();
+            const notes = document.getElementById('vehicle-notes').value.trim();
+
+            if (make && model && type && ac && registration && color && capacity) {
+                uploadform();
+            } else {
+                alert('Please fill all required fields.');
+            }
+        }
+    </script>
+</body>
+</html>

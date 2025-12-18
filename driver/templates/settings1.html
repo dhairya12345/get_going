@@ -1,0 +1,319 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Going - Settings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #10b981;
+            --danger-color: #ef4444;
+            --dark-color: #1f2937;
+            --light-color: #ffffff;
+            --gray-color: #e5e7eb;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --border-radius: 8px;
+            --spacing-unit: 2rem;
+            --compact-spacing: 0.75rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: #f9fafb;
+            color: var(--dark-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: var(--spacing-unit);
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 1.25rem var(--spacing-unit);
+            background: var(--light-color);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 900;
+            margin-bottom: var(--spacing-unit);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            justify-content: flex-end;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: var(--border-radius);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .user-profile:hover {
+            background: var(--gray-color);
+            transform: translateY(-2px);
+        }
+
+        .user-profile img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .user-profile:hover img {
+            transform: scale(1.1);
+        }
+
+        .welcome-banner {
+            background: linear-gradient(135deg, var(--primary-color), #3b82f6);
+            color: var(--light-color);
+            padding: var(--spacing-unit);
+            border-radius: var(--border-radius);
+            margin-bottom: calc(var(--spacing-unit) * 1.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .welcome-banner:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .welcome-text h1 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .welcome-text p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .settings-section {
+            background: var(--light-color);
+            padding: calc(var(--spacing-unit) * 0.75);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: calc(var(--spacing-unit) * 1.5);
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        .settings-section h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: var(--compact-spacing);
+        }
+
+        .settings-section p {
+            font-size: 0.95rem;
+            color: #6b7280;
+            margin-bottom: var(--compact-spacing);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--compact-spacing);
+        }
+
+        .form-group {
+            margin-bottom: var(--compact-spacing);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.6rem 0.9rem;
+            border: 1логpx solid var(--gray-color);
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+            outline: none;
+        }
+
+        .ride-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+            margin-top: var(--spacing-unit);
+        }
+
+        .save-btn {
+            background: var(--primary-color);
+            color: var(--light-color);
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .save-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .cancel-btn {
+            background: var(--light-color);
+            color: var(--danger-color);
+            border: 1px solid var(--danger-color);
+            padding: 0.6rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cancel-btn:hover {
+            background: rgba(239, 68, 68, 0.1);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @media (max-width: 768px) {
+            .welcome-banner {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.25rem;
+            }
+
+            .ride-actions {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @ newspacex@media (max-width: 576px) {
+            .top-nav {
+                flex-direction: row;
+                justify-content: flex-end;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 1rem;
+            }
+
+            .nav-right {
+                justify-content: flex-end;
+            }
+
+            .main-content {
+                padding: calc(var(--spacing-unit) * 0.75);
+            }
+
+            .welcome-text h1 {
+                font-size: 1.5rem;
+            }
+
+            .welcome-text p {
+                font-size: 0.9rem;
+            }
+
+            .settings-section h2 {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <div class="top-nav">
+                <div class="nav-right">
+                    <div class="user-profile">
+                        <img src="{% static user_data.profile_img%}" alt="User Profile">
+                        <span>{{user_data.name}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-content">
+                <div class="content-section active" id="settings">
+                    <div class="welcome-banner">
+                        <div class="welcome-text">
+                            <h1>Settings</h1>
+                            <p>Personalize your Get Going driver profile</p>
+                        </div>
+                    </div>
+                    <div class="settings-section">
+                        <h2>Profile Settings</h2>
+                        <p>Update your basic information.</p>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="driver-name">Full Name</label>
+                                <input type="text" id="driver-name" placeholder="Rajesh Kumar" aria-label="Driver Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="notifications">Notifications</label>
+                                <select id="notifications" aria-label="Notifications">
+                                    <option selected>Email & App</option>
+                                    <option>Email Only</option>
+                                    <option>App Only</option>
+                                    <option>Disabled</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="ride-actions">
+                            <button class="save-btn" onclick="alert('Settings saved successfully!')">Save Changes</button>
+                            <button class="cancel-btn" onclick="alert('Changes discarded.')">Discard</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

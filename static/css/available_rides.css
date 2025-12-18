@@ -1,0 +1,983 @@
+/* Global Styles */
+:root {
+    --primary-color: #4a6bff;
+    --secondary-color: #6c757d;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #17a2b8;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+    --white-color: #ffffff;
+    --black-color: #000000;
+    --gray-color: #6c757d;
+    --light-gray: #f1f3f5;
+    --border-radius: 8px;
+    --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9fafb;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: var(--transition);
+}
+
+a:hover {
+    color: #3a56d4;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    gap: 8px;
+}
+
+.btn-primary:hover {
+    background-color: #3a56d4;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(74, 107, 255, 0.3);
+}
+
+.btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    gap: 8px;
+}
+
+.btn-outline:hover {
+    background-color: rgba(74, 107, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: var(--white-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    padding: 15px 0;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+}
+
+.logo i {
+    margin-right: 10px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: var(--secondary-color);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-links a.active {
+    color: var(--primary-color);
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+    color: var(--secondary-color);
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+}
+
+.dropbtn:hover {
+    color: var(--primary-color);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: var(--white-color);
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.dropdown-content a {
+    color: var(--secondary-color);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dropdown-content a:hover {
+    background-color: #f8f9fa;
+    color: var(--primary-color);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    animation: fadeIn 0.3s;
+}
+
+.mobile-menu-btn {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--secondary-color);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Available Rides Page Styles */
+.available-rides-page {
+    padding: 120px 0 60px;
+}
+
+.page-header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.page-header h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.page-header p {
+    color: var(--secondary-color);
+    font-size: 18px;
+}
+
+/* Filters Section */
+.filters-section {
+    margin-bottom: 30px;
+}
+
+.filters-toggle {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+}
+
+.filters-container {
+    background-color: var(--white-color);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    display: none; /* Hidden by default, shown with JS */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.filters-container.show {
+    display: grid;
+    animation: fadeIn 0.3s;
+}
+
+.filter-group {
+    margin-bottom: 20px;
+}
+
+.filter-group h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: var(--dark-color);
+}
+
+.price-range {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.price-range input[type="range"] {
+    width: 100%;
+    height: 8px;
+    -webkit-appearance: none;
+    background: #ddd;
+    border-radius: 5px;
+    outline: none;
+}
+
+.price-range input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.price-values {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: var(--secondary-color);
+}
+
+#current-price {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.distance-options, .time-options, .rating-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.distance-option, .time-option, .rating-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    position: relative;
+    padding-left: 30px;
+    user-select: none;
+}
+
+.distance-option input, .time-option input, .rating-option input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.radio-btn {
+    position: absolute;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.distance-option:hover input ~ .radio-btn,
+.time-option:hover input ~ .radio-btn,
+.rating-option:hover input ~ .radio-btn {
+    background-color: #ddd;
+}
+
+.distance-option input:checked ~ .radio-btn,
+.time-option input:checked ~ .radio-btn,
+.rating-option input:checked ~ .radio-btn {
+    background-color: var(--primary-color);
+}
+
+.radio-btn:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.distance-option input:checked ~ .radio-btn:after,
+.time-option input:checked ~ .radio-btn:after,
+.rating-option input:checked ~ .radio-btn:after {
+    display: block;
+}
+
+.distance-option .radio-btn:after,
+.time-option .radio-btn:after,
+.rating-option .radio-btn:after {
+    left: 7px;
+    top: 7px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: white;
+}
+
+.rating-option .stars {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.rating-option .stars i {
+    color: #ffc107;
+    font-size: 14px;
+}
+
+.rating-option .stars span {
+    margin-left: 5px;
+    color: var(--secondary-color);
+    font-size: 14px;
+}
+
+.vehicle-types {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.vehicle-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    position: relative;
+    padding-left: 30px;
+    user-select: none;
+}
+
+.vehicle-option input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 4px;
+    transition: var(--transition);
+}
+
+.vehicle-option:hover input ~ .checkmark {
+    background-color: #ddd;
+}
+
+.vehicle-option input:checked ~ .checkmark {
+    background-color: var(--primary-color);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.vehicle-option input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.vehicle-option .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.filter-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 20px;
+    grid-column: 1 / -1;
+}
+
+/* Sort Options */
+.sort-options {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: flex-end;
+}
+
+.sort-options label {
+    font-weight: 500;
+}
+
+.sort-options select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+}
+
+/* Rides List Section */
+.rides-list-section {
+    background-color: var(--white-color);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.rides-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+}
+
+.ride-card {
+    background-color: var(--white-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    transition: var(--transition);
+    border: 1px solid #eee;
+}
+
+.ride-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.ride-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.driver-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.driver-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.driver-name-rating h4 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    color: var(--secondary-color);
+}
+
+.rating i {
+    color: #ffc107;
+}
+
+.ride-price {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.ride-details {
+    padding: 20px;
+}
+
+.route {
+    margin-bottom: 15px;
+}
+
+.location {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.dot {
+    min-width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.dot.start {
+    background-color: var(--primary-color);
+}
+
+.dot.end {
+    background-color: var(--success-color);
+}
+
+.timing {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.car-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.seats-available {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.distance {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.amenities-list {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.amenity-badge {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: rgba(74, 107, 255, 0.1);
+    color: var(--primary-color);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.ride-actions {
+    display: flex;
+    padding: 0 20px 20px;
+    gap: 15px;
+}
+
+/* Loading State */
+.loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.loading-spinner {
+    font-size: 40px;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+/* No Results State */
+.no-results {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.no-results img {
+    max-width: 200px;
+    margin-bottom: 20px;
+}
+
+.no-results h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.no-results p {
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+}
+
+.modal-content {
+    background-color: var(--white-color);
+    margin: 50px auto;
+    max-width: 600px;
+    width: 90%;
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+    animation: modalFadeIn 0.3s;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-header {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-modal {
+    color: var(--secondary-color);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.close-modal:hover {
+    color: var(--dark-color);
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-footer {
+    padding: 20px;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+/* Detailed Ride Info in Modal */
+.ride-detail {
+    margin-bottom: 20px;
+}
+
+.ride-detail h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: var(--dark-color);
+}
+
+.detail-row {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.detail-label {
+    flex: 0 0 120px;
+    font-weight: 500;
+    color: var(--secondary-color);
+}
+
+.detail-value {
+    flex: 1;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: var(--dark-color);
+    color: var(--white-color);
+    padding: 60px 0 0;
+    margin-top: 60px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-section h3 {
+    color: var(--white-color);
+    font-size: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+.footer-section p {
+    color: #adb5bd;
+    margin-bottom: 20px;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #adb5bd;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-section ul li a:hover {
+    color: var(--white-color);
+    padding-left: 5px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: var(--white-color);
+    transition: var(--transition);
+}
+
+.social-icons a:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+.app-download {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.app-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px 15px;
+    border-radius: var(--border-radius);
+    color: var(--white-color);
+    transition: var(--transition);
+}
+
+.app-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.app-btn span {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    line-height: 1.3;
+}
+
+.app-btn span strong {
+    font-size: 16px;
+}
+
+.footer-bottom {
+    padding: 20px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-bottom p {
+    color: #adb5bd;
+    margin: 0;
+    font-size: 14px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-links a {
+    color: #adb5bd;
+    font-size: 14px;
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    color: var(--white-color);
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .rides-list {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .available-rides-page {
+        padding: 100px 0 40px;
+    }
+    
+    .page-header h1 {
+        font-size: 28px;
+    }
+    
+    .filters-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .ride-actions {
+        flex-direction: column;
+    }
+    
+    .modal-footer {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 576px) {
+    .rides-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-links {
+        justify-content: center;
+    }
+}

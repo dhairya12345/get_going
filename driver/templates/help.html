@@ -1,0 +1,400 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Going - Help & Support</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #10b981;
+            --accent-color: #f59e0b;
+            --danger-color: #ef4444;
+            --dark-color: #1f2937;
+            --light-color: #ffffff;
+            --gray-color: #e5e7eb;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --border-radius: 8px;
+            --spacing-unit: 2rem;
+            --compact-spacing: 0.75rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: #f9fafb;
+            color: var(--dark-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: var(--spacing-unit);
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 1.25rem var(--spacing-unit);
+            background: var(--light-color);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 900;
+            margin-bottom: var(--spacing-unit);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            justify-content: flex-end;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: var(--border-radius);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .user-profile:hover {
+            background: var(--gray-color);
+            transform: translateY(-2px);
+        }
+
+        .user-profile img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .user-profile:hover img {
+            transform: scale(1.1);
+        }
+
+        .notification-icon {
+            position: relative;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 1.25rem;
+        }
+
+        .notification-icon:hover {
+            color: var(--primary-color);
+            transform: scale(1.15);
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: var(--danger-color);
+            color: var(--light-color);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+        }
+
+        .dashboard-content {
+            padding: var(--spacing-unit);
+        }
+
+        .content-section {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+            margin-bottom: var(--spacing-unit);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .welcome-banner {
+            background: linear-gradient(135deg, var(--primary-color), #3b82f6);
+            color: var(--light-color);
+            padding: var(--spacing-unit);
+            border-radius: var(--border-radius);
+            margin-bottom: calc(var(--spacing-unit) * 1.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .welcome-banner:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .welcome-text h1 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .welcome-text p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .settings-section {
+            background: var(--light-color);
+            padding: calc(var(--spacing-unit) * 0.75);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: calc(var(--spacing-unit) * 1.5);
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        .settings-section h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: var(--compact-spacing);
+        }
+
+        .settings-section p {
+            font-size: 0.95rem;
+            color: #6b7280;
+            margin-bottom: var(--compact-spacing);
+        }
+
+        .support-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: calc(var(--spacing-unit) * 0.75);
+            margin-top: var(--spacing-unit);
+        }
+
+        .support-card {
+            background: var(--light-color);
+            padding: var(--spacing-unit);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid var(--gray-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .support-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary-color);
+        }
+
+        .support-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .support-card:hover::before {
+            opacity: 1;
+        }
+
+        .support-card i {
+            font-size: 2.25rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .support-card:hover i {
+            transform: scale(1.1);
+        }
+
+        .support-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--dark-color);
+        }
+
+        .support-card p {
+            font-size: 0.9rem;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        .support-card .action-btn {
+            margin-top: 1rem;
+            background: var(--primary-color);
+            color: var(--light-color);
+            padding: 0.75rem 1.5rem;
+            font-size: 0.9rem;
+            border-radius: var(--border-radius);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            justify-content: center;
+        }
+
+        .support-card .action-btn:hover {
+            background: #1d4ed8;
+        }
+
+        @media (max-width: 768px) {
+            .welcome-banner {
+                flex-direction: column;
+                text-align: center;
+                gap graduate: 1.25rem;
+            }
+
+            .support-options {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .top-nav {
+                flex-direction: row;
+                justify-content: flex-end;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 1rem;
+            }
+
+            .nav-right {
+                justify-content: flex-end;
+            }
+
+            .main-content {
+                padding: calc(var(--spacing-unit) * 0.75);
+            }
+
+            .welcome-text h1 {
+                font-size: 1.5rem;
+            }
+
+            .welcome-text p {
+                font-size: 0.9rem;
+            }
+
+            .settings-section h2 {
+                font-size: 1.25rem;
+            }
+
+            .support-card {
+                padding: calc(var(--spacing-unit) * 0.75);
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <div class="top-nav">
+                <div class="nav-right">
+                    <div class="notification-icon">
+                        <i class="fas fa-bell"></i>
+                        <div class="notification-badge">3</div>
+                    </div>
+                    </div>
+                     <div class="user-profile">
+                        <img src="{% static user_data.profile_img%}" alt="User Profile">
+                        <span>{{user_data.name}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-content">
+                <div class="content-section" id="help">
+                    <div class="welcome-banner">
+                        <div class="welcome-text">
+                            <h1>Help & Support</h1>
+                            <p>Access resources and support to enhance your driving experience with Get Going</p>
+                        </div>
+                    </div>
+                    <div class="settings-section">
+                        <h2>Driver Support Center</h2>
+                        <p>Find quick solutions or contact our dedicated support team for assistance.</p>
+                        <div class="support-options">
+                            <div class="support-card" onclick="alert('Contacting support team...')">
+                                <i class="fas fa-headset"></i>
+                                <h3>Contact Support</h3>
+                                <p>Reach our 24/7 support team via chat, email, or phone.</p>
+                                <button class="action-btn">Get Help</button>
+                            </div>
+                            <div class="support-card" onclick="alert('Opening driver resources...')">
+                                <i class="fas fa-book"></i>
+                                <h3>Driver Resources</h3>
+                                <p>Access guides on safety, earnings, and best practices.</p>
+                                <button class="action-btn">View Resources</button>
+                            </div>
+                            <div class="support-card" onclick="alert('Viewing FAQ...')">
+                                <i class="fas fa-question"></i>
+                                <h3>FAQ</h3>
+                                <p>Find answers to common questions about driving with Get Going.</p>
+                                <button class="action-btn">Read FAQ</button>
+                            </div>
+                            <div class="support-card" onclick="alert('Accessing feedback form...')">
+                                <i class="fas fa-comment"></i>
+                                <h3>Provide Feedback</h3>
+                                <p>Share your suggestions to improve the platform.</p>
+                                <button class="action-btn">Submit Feedback</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Notification clear
+        document.querySelector('.notification-icon').addEventListener('click', function() {
+            this.querySelector('.notification-badge').style.display = 'none';
+        });
+    </script>
+</body>
+</html>

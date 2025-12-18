@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Riders | Get Going</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #10b981;
+            --accent-color: #f59e0b;
+            --danger-color: #ef4444;
+            --dark-color: #1f2937;
+            --light-color: #ffffff;
+            --gray-color: #e5e7eb;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --border-radius: 8px;
+            --spacing-unit: 2rem;
+            --compact-spacing: 0.75rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: #f9fafb;
+            color: var(--dark-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Custom animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Parallax background effect */
+        .parallax-bg {
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .parallax-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+            .text-5xl {
+                font-size: 2.5rem;
+            }
+            .text-xl {
+                font-size: 1rem;
+            }
+            .py-24 {
+                padding-top: 4rem;
+                padding-bottom: 4rem;
+            }
+            .parallax-bg {
+                background-attachment: scroll;
+            }
+        }
+        @media (max-width: 768px) {
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+            }
+            .nav-menu li {
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with blue theme -->
+    <header class="bg-white text-[var(--dark-color)] py-4 sticky top-0 z-50 shadow-[var(--shadow)]">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-[var(--primary-color)]">Get Going</h1>
+            <nav>
+                <ul class="nav-menu flex flex-row space-x-6">
+                    <li><a href="/" class="hover:text-[var(--primary-color)] transition">Home</a></li>
+                    <li><a href="/about_driver.html" class="hover:text-[var(--primary-color)] transition">About Drivers</a></li>
+                    <li><a href="/about_rider.html" class="text-[var(--primary-color)] font-semibold">About Riders</a></li>
+                    <li><a href="/contact" class="hover:text-[var(--primary-color)] transition">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section with rider-focused image -->
+    <section class="relative bg-[var(--primary-color)] text-[var(--light-color)] py-24 parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1522075782449-e45c1725a9ba');">
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <h2 class="text-5xl font-extrabold mb-6 fade-in">Our Riders at Get Going</h2>
+            <p class="text-xl max-w-3xl mx-auto mb-8 fade-in" style="animation-delay: 0.2s;">
+                Riders are the heart of Get Going, relying on our platform for convenient, safe, and affordable travel across the city.
+            </p>
+        </div>
+    </section>
+
+    <!-- Rider Role Section -->
+    <section class="container mx-auto px-4 py-16">
+        <h3 class="text-4xl font-bold text-[var(--dark-color)] text-center mb-12 fade-in">The Role of Our Riders</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-[var(--light-color)] p-8 rounded-[var(--border-radius)] shadow-[var(--shadow)] card-hover fade-in" style="animation-delay: 0.2s;">
+                <div class="text-[var(--primary-color)] text-4xl mb-4">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h4 class="text-2xl font-semibold text-[var(--dark-color)] mb-4">Effortless Travel</h4>
+                <p class="text-[var(--dark-color)]">Riders use our app to book rides quickly, enjoying seamless travel to their destinations.</p>
+            </div>
+            <div class="bg-[var(--light-color)] p-8 rounded-[var(--border-radius)] shadow-[var(--shadow)] card-hover fade-in" style="animation-delay: 0.4s;">
+                <div class="text-[var(--primary-color)] text-4xl mb-4">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h4 class="text-2xl font-semibold text-[var(--dark-color)] mb-4">Community Engagement</h4>
+                <p class="text-[var(--dark-color)]">Riders connect with local drivers, fostering a sense of community through shared journeys.</p>
+            </div>
+            <div class="bg-[var(--light-color)] p-8 rounded-[var(--border-radius)] shadow-[var(--shadow)] card-hover fade-in" style="animation-delay: 0.6s;">
+                <div class="text-[var(--primary-color)] text-4xl mb-4">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h4 class="text-2xl font-semibold text-[var(--dark-color)] mb-4">Safe Journeys</h4>
+                <p class="text-[var(--dark-color)]">Riders travel with confidence, knowing our drivers are verified and committed to safety.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[var(--dark-color)] text-[var(--light-color)] py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-[var(--gray-color)]">© 2025 Get Going. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animation trigger
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.fade-in');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            elements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>

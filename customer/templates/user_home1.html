@@ -1,0 +1,294 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GET GOING - Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/user_home1.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="light-mode">
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="user_home1.html" class="logo">GET GOING</a>
+            <div class="nav-links">
+                <a href="user_home1.html" class="active"><i class="fas fa-home"></i> Dashboard</a>
+                <a href="http://127.0.0.1:8000/customer/login/user_home1/user"><i class="fas fa-search"></i> Book a Ride</a>
+                <a href="available_rides.html"><i class="fas fa-car"></i> Available Rides</a>
+                <a href="ride_history.html"><i class="fas fa-history"></i> Ride History</a>
+                <a href="http://127.0.0.1:8000/customer/login/user_home1/cancelride"><i class="fas fa-times-circle"></i> Cancel Ride</a>
+                <a href="http://127.0.0.1:8000/customer/login/user_home1/profile"><i class="fas fa-wallet"></i> Wallet</a>
+                <div class="user-menu">
+                    <div class="user-avatar">
+                        <img src="{% static user_data.profile_img%}" alt="User">
+                        <span>{{user_data.name}}</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="dropdown-menu">
+                        <a href="http://127.0.0.1:8000/customer/login/user_home1/profile"><i class="fas fa-user"></i> Profile</a>
+                        <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+            <div class="theme-toggle">
+                <input type="checkbox" id="darkModeToggle">
+                <label for="darkModeToggle" class="toggle-switch">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                    <span class="toggle-ball"></span>
+                </label>
+            </div>
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <a href="user_home1.html" class="active"><i class="fas fa-home"></i> Dashboard</a>
+        <a href="http://127.0.0.1:8000/customer/login/user_home1/user"><i class="fas fa-search"></i> Book a Ride</a>
+        <a href="available_rides.html"><i class="fas fa-car"></i> Available Rides</a>
+        <a href="ride_history.html"><i class="fas fa-history"></i> Ride History</a>
+        <a href="wallet.html"><i class="fas fa-wallet"></i> Wallet</a>
+        <a href="http://127.0.0.1:8000/customer/login/user_home1/profile"><i class="fas fa-user"></i> Profile</a>
+        <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+       <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+
+    </div>
+
+    <!-- Dashboard Content -->
+    <main class="dashboard-container">
+        <div class="container">
+            <!-- Welcome Banner -->
+            <section class="welcome-banner">
+                <div class="welcome-content">
+                    <div class="user-greeting">
+                        <h1>Welcome back, {{user_data.name}}!</h1>
+                        <p>Ready for your next ride?</p>
+                    </div>
+                    <div class="user-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-car"></i>
+                            <div>
+                                <span class="stat-value">24</span>
+                                <span class="stat-label">Total Rides</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-star"></i>
+                            <div>
+                                <span class="stat-value">4.9</span>
+                                <span class="stat-label">Avg Rating</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="quick-action">
+                        <a href="book_ride.html" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Book a Ride
+                        </a>
+                    </div>
+                </div>
+                <div class="user-avatar">
+                    <img src="{% static user_data.profile_img %}" alt="User">
+                </div>
+            </section>
+
+            <!-- Quick Book Section -->
+            <section class="quick-book-section">
+                <h2 class="section-title"><i class="fas fa-bolt"></i> Quick Book</h2>
+                <form class="quick-book-form">
+                    <div class="form-group">
+                        <label for="fromLocation"><i class="fas fa-map-marker-alt"></i> From</label>
+                        <input type="text" id="fromLocation" placeholder="Current location">
+                    </div>
+                    <div class="form-group">
+                        <label for="toLocation"><i class="fas fa-flag"></i> To</label>
+                        <input type="text" id="toLocation" placeholder="Destination">
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-search"></i> Find Rides
+                    </button>
+                </form>
+            </section>
+
+            <!-- Upcoming Ride Section -->
+            <section class="upcoming-ride-section">
+                <h2 class="section-title"><i class="fas fa-calendar-check"></i> Upcoming Ride</h2>
+                {%for ride in ava_ride%}
+                <div class="upcoming-ride-card">
+                    <div class="ride-info">
+                        <div class="route">
+                            <span class="from">{{ride.avl_ride.pick_up}}</span>
+                            <i class="fas fa-arrow-right"></i>
+                            <span class="to">{{ride.avl_ride.destination}}</span>
+                        </div>
+                        <div class="ride-details">
+                            <div class="driver-info">
+                                <img src="{% static ride.avl_ride.u_id.profile_img %}" alt="driver">
+                                <div>
+                                    <span class="driver-name">{{ride.avl_ride.u_id.name}}</span>
+                                    <span class="car-model">{{ride.avl_ride.vehical_id.company}} {{ride.vehical_id.type}} </span>
+                                </div>
+                            </div>
+                            <div class="ride-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>{{ride.avl_ride.date}}, {{ride.avl_ride.time}}</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <span>{{ride.avl_ride.price}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ride-status">
+                        <span class="badge confirmed">Confirmed</span>
+                        <button class="btn btn-outline">View Details</button>
+                    </div>
+                </div>
+                {%endfor%}
+                <!-- Alternative when no upcoming rides -->
+                <!-- <div class="no-upcoming-rides">
+                    <i class="fas fa-car"></i>
+                    <p>No upcoming rides. Book now!</p>
+                    <a href="book_ride.html" class="btn btn-primary">Book a Ride</a>
+                </div> -->
+            </section>
+
+            <!-- Available Rides Section -->
+            <section class="available-rides-section">
+                <div class="section-header">
+                    <h2 class="section-title"><i class="fas fa-car"></i> Rides </h2>
+                    <a href="available_rides.html" class="btn btn-outline">View All</a>
+                </div>
+                <div class="rides-grid">
+                    {%for ride in avl_ride%}
+                    <div class="ride-card">
+                        <div class="ride-header">
+                            <div class="driver-info">
+                                <img src="{%static ride.u_id.profile_img %}" alt="Driver">
+                                <div>
+                                    <span class="driver-name">{{ride.u_id.name}}</span>
+                                    <span class="rating"><i class="fas fa-star"></i> 4.8 ({{avl_ride.count}})</span>
+                                </div>
+                            </div>
+                            <span class="price">{{ride.price}}</span>
+                        </div>
+                        <div class="ride-details">
+                            <div class="route">
+                                <span class="from">{{ride.pick_up}}</span>
+                                <i class="fas fa-arrow-right"></i>
+                                <span class="to">{{ride.destination}}</span>
+                            </div>
+                            <div class="ride-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>{{ride.date}}, {{ride.time}}</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-chair"></i>
+                                    <span>{{ride.vehical_id.seats_available}} seats left</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    {%endfor%}
+
+                    
+                </div>
+            </section>
+
+    
+            <!-- Help Section -->
+            <section class="help-section">
+                <h2 class="section-title"><i class="fas fa-question-circle"></i> Need Help?</h2>
+                <div class="help-cards">
+                    <a href="faq.html" class="help-card">
+                        <i class="fas fa-comments"></i>
+                        <span>FAQs</span>
+                    </a>
+                    <a href="contact.html" class="help-card">
+                        <i class="fas fa-headset"></i>
+                        <span>Contact Support</span>
+                    </a>
+                    <a href="safety.html" class="help-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Safety Tips</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>GET GOING</h3>
+                    <p>Ride-sharing made simple, affordable, and eco-friendly.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Rides</a></li>
+                        <li><a href="#">History</a></li>
+                        <li><a href="#">Wallet</a></li>
+                        <li><a href="#">Profile</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Safety</a></li>
+                        <li><a href="#">Community Guidelines</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Download App</h3>
+                    <div class="app-download">
+                        <a href="#" class="app-btn">
+                            <i class="fab fa-google-play"></i>
+                            <span>GET IT ON<br><strong>Google Play</strong></span>
+                        </a>
+                        <a href="#" class="app-btn">
+                            <i class="fab fa-apple"></i>
+                            <span>Download on the<br><strong>App Store</strong></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Get Going System. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    
+    <script src="{%static 'js/user_home1.js'%}"></script>
+</body>
+</html>

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Going System | User Dashboard</title>
+    <link rel="stylesheet" href="user_home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">GET GOING</a>
+            <div class="nav-links">
+                <a href="#" class="active"><i class="fas fa-home"></i> Home</a>
+                <a href="#"><i class="fas fa-history"></i> Ride History</a>
+                <a href="#"><i class="fas fa-wallet"></i> Wallet</a>
+                <div class="dropdown">
+                    <button class="dropbtn">
+                        <i class="fas fa-user-circle"></i> Profile <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#"><i class="fas fa-user"></i> My Account</a>
+                        <a href="#"><i class="fas fa-cog"></i> Settings</a>
+                        <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Find your perfect ride</h1>
+                <p>Share rides, save money, and reduce carbon footprint</p>
+                
+                <!-- Ride Booking Form -->
+                <form class="booking-form">
+                    <div class="form-group">
+                        <label for="source"><i class="fas fa-map-marker-alt"></i> From</label>
+                        <input type="text" id="source" placeholder="Enter pickup location">
+                    </div>
+                    <div class="form-group">
+                        <label for="destination"><i class="fas fa-flag-checkered"></i> To</label>
+                        <input type="text" id="destination" placeholder="Enter drop location">
+                    </div>
+                    <div class="form-group">
+                        <label for="date"><i class="fas fa-calendar-alt"></i> Date</label>
+                        <input type="date" id="date">
+                    </div>
+                    <button type="submit" class="btn-primary">Search Rides <i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            <div class="hero-image">
+                <img src="7.png" alt="Ride Sharing Illustration">
+            </div>
+        </div>
+    </section>
+
+    <!-- Available Rides Section -->
+    <section class="available-rides">
+        <div class="container">
+            <h2>Available Rides Near You</h2>
+            <div class="filter-options">
+                <button class="filter-btn active">All</button>
+                <button class="filter-btn">Today</button>
+                <button class="filter-btn">Tomorrow</button>
+                <button class="filter-btn">Within 5km</button>
+            </div>
+            
+            <div class="rides-grid">
+                <!-- Ride Card 1 -->
+                <div class="ride-card">
+                    <div class="ride-header">
+                        <div class="driver-info">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Driver" class="driver-avatar">
+                            <div>
+                                <h4>John D.</h4>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <span>4.5 (42)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ride-price">
+                            ₹150
+                        </div>
+                    </div>
+                    <div class="ride-details">
+                        <div class="route">
+                            <div class="location">
+                                <span class="dot start"></span>
+                                <span>MG Road, Bangalore</span>
+                            </div>
+                            <div class="location">
+                                <span class="dot end"></span>
+                                <span>Electronic City, Bangalore</span>
+                            </div>
+                        </div>
+                        <div class="timing">
+                            <i class="fas fa-clock"></i> Today, 8:30 AM
+                        </div>
+                        <div class="car-info">
+                            <i class="fas fa-car"></i> Hyundai i20 (AC) • 2 seats available
+                        </div>
+                    </div>
+                    <div class="ride-actions">
+                        <button class="btn-outline"><i class="fas fa-info-circle"></i> Details</button>
+                        <button class="btn-primary"><i class="fas fa-chair"></i> Book Seat</button>
+                    </div>
+                </div>
+
+                <!-- Ride Card 2 -->
+                <div class="ride-card">
+                    <div class="ride-header">
+                        <div class="driver-info">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Driver" class="driver-avatar">
+                            <div>
+                                <h4>Priya S.</h4>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>4.0 (28)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ride-price">
+                            ₹200
+                        </div>
+                    </div>
+                    <div class="ride-details">
+                        <div class="route">
+                            <div class="location">
+                                <span class="dot start"></span>
+                                <span>Koramangala, Bangalore</span>
+                            </div>
+                            <div class="location">
+                                <span class="dot end"></span>
+                                <span>Whitefield, Bangalore</span>
+                            </div>
+                        </div>
+                        <div class="timing">
+                            <i class="fas fa-clock"></i> Today, 5:45 PM
+                        </div>
+                        <div class="car-info">
+                            <i class="fas fa-car"></i> Maruti Swift • 3 seats available
+                        </div>
+                    </div>
+                    <div class="ride-actions">
+                        <button class="btn-outline"><i class="fas fa-info-circle"></i> Details</button>
+                        <button class="btn-primary"><i class="fas fa-chair"></i> Book Seat</button>
+                    </div>
+                </div>
+
+                <!-- Ride Card 3 -->
+                <div class="ride-card">
+                    <div class="ride-header">
+                        <div class="driver-info">
+                            <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Driver" class="driver-avatar">
+                            <div>
+                                <h4>Rahul M.</h4>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span>5.0 (63)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ride-price">
+                            ₹180
+                        </div>
+                    </div>
+                    <div class="ride-details">
+                        <div class="route">
+                            <div class="location">
+                                <span class="dot start"></span>
+                                <span>Indiranagar, Bangalore</span>
+                            </div>
+                            <div class="location">
+                                <span class="dot end"></span>
+                                <span>Marathahalli, Bangalore</span>
+                            </div>
+                        </div>
+                        <div class="timing">
+                            <i class="fas fa-clock"></i> Tomorrow, 9:15 AM
+                        </div>
+                        <div class="car-info">
+                            <i class="fas fa-car"></i> Honda City (AC) • 1 seat available
+                        </div>
+                    </div>
+                    <div class="ride-actions">
+                        <button class="btn-outline"><i class="fas fa-info-circle"></i> Details</button>
+                        <button class="btn-primary"><i class="fas fa-chair"></i> Book Seat</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2>How Get Going Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-search-location"></i>
+                    </div>
+                    <h3>1. Find a Ride</h3>
+                    <p>Search for rides going your way by entering your pickup and drop locations.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-chair"></i>
+                    </div>
+                    <h3>2. Book a Seat</h3>
+                    <p>Select a suitable ride and book your seat with just a few taps.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-car-side"></i>
+                    </div>
+                    <h3>3. Ride Together</h3>
+                    <p>Meet your driver at the pickup point and enjoy your shared ride.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-smile"></i>
+                    </div>
+                    <h3>4. Rate & Review</h3>
+                    <p>Share your experience to help improve our community.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ride History Section -->
+    <section class="ride-history">
+        <div class="container">
+            <h2>Your Recent Rides</h2>
+            <div class="history-table">
+                <div class="table-header">
+                    <div>Date</div>
+                    <div>From</div>
+                    <div>To</div>
+                    <div>Driver</div>
+                    <div>Amount</div>
+                    <div>Status</div>
+                </div>
+                <div class="table-row">
+                    <div>15 Mar 2023</div>
+                    <div>MG Road</div>
+                    <div>Electronic City</div>
+                    <div>John D.</div>
+                    <div>₹150</div>
+                    <div><span class="status completed">Completed</span></div>
+                </div>
+                <div class="table-row">
+                    <div>10 Mar 2023</div>
+                    <div>Koramangala</div>
+                    <div>Whitefield</div>
+                    <div>Priya S.</div>
+                    <div>₹200</div>
+                    <div><span class="status completed">Completed</span></div>
+                </div>
+                <div class="table-row">
+                    <div>5 Mar 2023</div>
+                    <div>Indiranagar</div>
+                    <div>Marathahalli</div>
+                    <div>Rahul M.</div>
+                    <div>₹180</div>
+                    <div><span class="status cancelled">Cancelled</span></div>
+                </div>
+            </div>
+            <button class="btn-outline view-all">View All Ride History <i class="fas fa-chevron-right"></i></button>
+        </div>
+    </section>
+
+    <!-- Wallet Section -->
+    <section class="wallet-section">
+        <div class="container">
+            <div class="wallet-card">
+                <div class="wallet-header">
+                    <h3><i class="fas fa-wallet"></i> Your Wallet</h3>
+                    <div class="balance">₹1,250</div>
+                </div>
+                <div class="wallet-actions">
+                    <button class="btn-outline"><i class="fas fa-plus-circle"></i> Add Money</button>
+                    <button class="btn-outline"><i class="fas fa-exchange-alt"></i> Transactions</button>
+                </div>
+                <div class="quick-payment">
+                    <h4>Quick Add</h4>
+                    <div class="amount-buttons">
+                        <button class="amount-btn">₹100</button>
+                        <button class="amount-btn">₹200</button>
+                        <button class="amount-btn">₹500</button>
+                        <button class="amount-btn">₹1000</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How do I book a ride?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>To book a ride, simply enter your pickup and drop locations in the search form, select a suitable ride from the available options, and click 'Book Seat'. You'll receive confirmation details once your booking is complete.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How are fares calculated?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Fares are calculated based on distance, time of day, and demand. Drivers set their own prices, but our system ensures they remain competitive and fair for both drivers and passengers.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Is ride-sharing safe?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! All drivers undergo verification, and our rating system helps maintain a trustworthy community. We also provide emergency contact features and ride tracking for added safety.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What if I need to cancel my ride?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>You can cancel your ride up to 1 hour before the scheduled pickup time without any charges. Late cancellations may incur a small fee depending on the driver's cancellation policy.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>GET GOING</h3>
+                    <p>Ride-sharing made simple, affordable, and eco-friendly.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Rides</a></li>
+                        <li><a href="#">History</a></li>
+                        <li><a href="#">Wallet</a></li>
+                        <li><a href="#">Profile</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Safety</a></li>
+                        <li><a href="#">Community Guidelines</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Download App</h3>
+                    <div class="app-download">
+                        <a href="#" class="app-btn">
+                            <i class="fab fa-google-play"></i>
+                            <span>GET IT ON<br><strong>Google Play</strong></span>
+                        </a>
+                        <a href="#" class="app-btn">
+                            <i class="fab fa-apple"></i>
+                            <span>Download on the<br><strong>App Store</strong></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Get Going System. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="user_home.js"></script>
+</body>
+</html>

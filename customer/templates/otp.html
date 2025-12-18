@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <title>OTP Validation</title>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        p {
+            color: #7f8c8d;
+            margin-bottom: 1.5rem;
+        }
+
+        .otp-inputs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .otp-input {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            font-size: 24px;
+            border: 2px solid #ecf0f1;
+            border-radius: 10px;
+            background: #f9fbfd;
+            transition: all 0.3s ease;
+        }
+
+        .otp-input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
+            transform: scale(1.05);
+        }
+
+        .otp-input.filled {
+            animation: bounce 0.3s ease;
+        }
+
+        @keyframes bounce {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        #message {
+            margin-top: 1rem;
+            font-size: 14px;
+            font-weight: 500;
+            opacity: 0;
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .success {
+            color: #27ae60;
+        }
+
+        .error {
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div id="recaptcha-container"></div>
+    <div class="container">
+        <h2>OTP Verification</h2>
+        <p>Enter the 4-digit code sent to your device</p>
+        
+        <div class="otp-inputs">
+            <input type="text" class="otp-input" maxlength="1">
+            <input type="text" class="otp-input" maxlength="1">
+            <input type="text" class="otp-input" maxlength="1">
+            <input type="text" class="otp-input" maxlength="1">
+            <input type="text" class="otp-input" maxlength="1">
+            <input type="text" class="otp-input" maxlength="1">
+        </div>
+    
+        <button onclick="verifyOTP()">Verify OTP</button>
+        <div id="message"></div>
+    </div>
+
+    <script>
+
+        const inputs = document.querySelectorAll('.otp-input');
+        
+        // Input handling
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                if (e.target.value.length === 1) {
+                    e.target.classList.add('filled');
+                    if (index < inputs.length - 1) {
+                        inputs[index + 1].focus();
+                    }
+                }
+            });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+        });
+
+        {% comment %} function verifyOTP() {
+            const message = document.getElementById('message');
+            let otp = '';
+            
+            inputs.forEach(input => {
+                otp += input.value;
+            });
+
+            const correctOTP = '1234';
+
+            if (otp.length !== 4) {
+                showMessage('Please enter a 4-digit OTP', 'error');
+            } else if (otp === correctOTP) {
+                showMessage('OTP Verified Successfully!', 'success');
+                inputs.forEach(input => {
+                    input.disabled = true;
+                    input.style.borderColor = '#27ae60';
+                });
+            } else {
+                showMessage('Invalid OTP. Please try again.', 'error');
+                inputs.forEach(input => {
+                    input.classList.remove('filled');
+                    input.value = '';
+                    input.style.borderColor = '#ecf0f1';
+                });
+                inputs[0].focus();
+            }
+        } {% endcomment %}
+
+        function showMessage(text, type) {
+            const message = document.getElementById('message');
+            message.textContent = text;
+            message.className = type;
+        }
+
+        // Paste handling
+        inputs[0].addEventListener('paste', (e) => {
+            const paste = (e.clipboardData || window.clipboardData).getData('text');
+            if (paste.length === 4 && !isNaN(paste)) {
+                for (let i = 0; i < 4; i++) {
+                    inputs[i].value = paste[i];
+                    inputs[i].classList.add('filled');
+                }
+            }
+            e.preventDefault();
+        });
+    </script>
+  <!-- Your existing HTML remains mostly unchanged, only updating the script part -->
+  <script type="module">
+    // Firebase App and Authentication SDKs
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js';
+    import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from 'https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js';
+
+    // Firebase config object
+    const firebaseConfig = {
+        apiKey: "AIzaSyCxCoOVNFRf_9APuMzsa3qdKDuwoNyFADY",
+        authDomain: "car-sharing-df3cf.firebaseapp.com",
+        projectId: "car-sharing-df3cf",
+        storageBucket: "car-sharing-df3cf.firebasestorage.app",
+        messagingSenderId: "84006336225",
+        appId: "1:84006336225:web:15ae222fd3662a341429a0",
+        measurementId: "G-NPB3KPYZNV"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    let confirmationResult;
+
+
+    // Initialize reCAPTCHA
+    const initializeRecaptcha = (containerId) => {
+        try {
+            return new RecaptchaVerifier(containerId, {
+                size: 'invisible',
+                callback: () => console.log("reCAPTCHA solved"),
+                'expired-callback': () => console.log("reCAPTCHA expired")
+            }, auth);
+        } catch (error) {
+            console.error("reCAPTCHA initialization failed:", error);
+            showMessage("reCAPTCHA setup failed. Please refresh.", "error");
+        }
+    };
+
+
+    const sendOTPHandler = async (phoneNumber) => {
+        if (!phoneNumber) {
+            showMessage("Phone number is required", "error");
+            return;
+        }
+
+        const recaptchaVerifier = initializeRecaptcha('recaptcha-container');
+        if (!recaptchaVerifier) return;
+
+        try {
+            confirmationResult = await signInWithPhoneNumber(auth, phoneNumber, recaptchaVerifier);
+            window.confirmationResult = confirmationResult;
+            showMessage("OTP sent successfully!", "success");
+            console.log("OTP sent successfully");
+        } catch (error) {
+            console.error("Error during OTP sending:", error);
+            showMessage(`Failed to send OTP: ${error.message}`, "error");
+        }
+    };
+
+
+    // Function to verify OTP
+    function verifyOTP() {
+        let otp = '';
+        document.querySelectorAll('.otp-input').forEach(input => otp += input.value);
+
+        if (!confirmationResult) {
+            alert("OTP not sent or expired. Please request an OTP first.");
+            return;
+        }
+
+        if (otp.length === 6) { // Ensure OTP length is 6 digits
+               if (!confirmationResult) {
+        alert("OTP not sent or expired. Please request an OTP first.");
+        return;
+    }
+            confirmationResult.confirm(otp)
+                .then((result) => {
+                    result.user.getIdToken().then((idToken) => {
+                        sendTokenToDjango(idToken); // Send token to Django after successful verification
+                    });
+                })
+                .catch((error) => {
+                    console.error("Error verifying OTP:", error);
+                    alert("Invalid OTP");
+                });
+        } else {
+            alert("Please enter a 6-digit OTP.");
+        }
+    }
+
+    function sendTokenToDjango(idToken) {
+        alert(idToken);
+        fetch('/customer/phoneAuth/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-CSRFToken': getCSRFToken(),  // CSRF token required
+            },
+            body: JSON.stringify({ token: idToken })
+        })
+        .then(response => {
+            // Check if the response status is OK (200 range)
+            if (!response.ok) {
+                // If the status is not OK, throw an error with the response text (HTML)
+                return response.text().then(text => { 
+                    throw new Error(text); // This will show the HTML error message in case of non-200 response
+                });
+            }
+    
+            // Check if the response is JSON (content-type header)
+            const contentType = response.headers.get('Content-Type');
+            if (contentType && contentType.includes('application/json')) {
+                // If it's JSON, parse and return it
+                return response.json();
+            } else {
+                // If it's not JSON, throw an error
+                return response.text().then(text => {
+                    throw new Error("Expected JSON, but got HTML or other content: " + text);
+                });
+            }
+        })
+        .then(data => {
+            // Successfully received a valid JSON response
+            console.log("Server response:", data);
+            alert(data.message); // Display the message from the server
+            alert("sign up successfully")
+            window.location.replace('http://127.0.0.1:8000/customer/login/');
+
+        })
+        .catch(error => {
+            // Handle any error (including response parsing errors)
+            console.error("Error sending token:", error);
+            alert("Error: " + error.message); // Display the error message
+        });
+    }
+    
+
+    // Function to get CSRF token
+    function getCSRFToken() {
+        return document.cookie.split('; ')
+            .find(row => row.startsWith('csrftoken'))
+            ?.split('=')[1];
+    }
+
+    // Expose verifyOTP function globally for button click
+    window.verifyOTP = verifyOTP;
+
+    {% comment %} // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Initialize reCAPTCHA
+    const initializeRecaptcha = (containerId) => {
+        try {
+            return new RecaptchaVerifier(containerId, {
+                size: 'invisible',
+                callback: () => console.log("reCAPTCHA solved"),
+                'expired-callback': () => console.log("reCAPTCHA expired")
+            }, auth);
+        } catch (error) {
+            console.error("reCAPTCHA initialization failed:", error);
+            showMessage("reCAPTCHA setup failed. Please refresh.", "error");
+        }
+    };
+
+    // Send OTP
+    const sendOTPHandler = async (phoneNumber) => {
+        if (!phoneNumber) {
+            showMessage("Phone number is required", "error");
+            return;
+        }
+
+        const recaptchaVerifier = initializeRecaptcha('recaptcha-container');
+        if (!recaptchaVerifier) return;
+
+        try {
+            const confirmationResult = await signInWithPhoneNumber(auth, phoneNumber, recaptchaVerifier);
+            window.confirmationResult = confirmationResult;
+            showMessage("OTP sent successfully!", "success");
+            console.log("OTP sent successfully");
+        } catch (error) {
+            console.error("Error during OTP sending:", error);
+            showMessage(`Failed to send OTP: ${error.message}`, "error");
+        }
+    };
+
+    // Verify OTP
+    const verifyOTPHandler = async () => {
+        let otp = '';
+
+        document.querySelectorAll('.otp-input').forEach(input => otp += input.value);
+
+        if (otp.length !== 6) {
+            showMessage("Please enter a 6-digit OTP", "error");
+            return;
+        }
+
+        if (!window.confirmationResult) {
+            showMessage("Please request an OTP first", "error");
+            return;
+        }
+
+        try {
+            const result = await window.confirmationResult.confirm(otp);
+            showMessage("OTP Verified Successfully!", "success");
+            sendDataToDjango()
+            document.querySelectorAll('.otp-input').forEach(input => {
+                input.disabled = true;
+                input.style.borderColor = '#27ae60';
+            });
+            console.log("User verified:", result.user);
+        } catch (error) {
+            console.error("Error during OTP verification:", error);
+            showMessage("Invalid OTP. Please try again.", "error");
+            document.querySelectorAll('.otp-input').forEach(input => {
+                input.classList.remove('filled');
+                input.value = '';
+                input.style.borderColor = '#ecf0f1';
+            });
+            inputs[0].focus();
+        }
+
+        
+    };
+
+   
+
+    // Auto-send OTP on load
+    window.onload = () => {
+        const phoneNumber = "+919427804826"; // Replace with your test number
+        sendOTPHandler(phoneNumber);
+    };
+   
+    // Expose verifyOTPHandler globally for the button onclick
+    window.verifyOTPHandler = verifyOTPHandler; {% endcomment %}
+
+    window.onload = () => {
+        const phoneNumber = "+919427804826"; // Replace with your test number
+        sendOTPHandler(phoneNumber);
+    };
+</script>
+</body>
+</html>

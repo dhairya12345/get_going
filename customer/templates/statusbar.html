@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ 
+    <style>
+        html,body
+        {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #statusbar
+        {
+         width: 50%;
+         height: 6%;
+         position: relative;
+         
+         object-fit: cover;
+        }
+        
+        .container
+        {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            
+            justify-content: space-around;
+            align-items: center;
+            padding: 1%;
+            
+        }
+        .step
+        {
+           
+            position: relative;
+            width: 2em;
+            height: 2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid black;
+            background: white;
+            border-radius: 50%;
+           z-index: 1;
+        
+        }
+        .container .step.active
+        {
+           border-color: aqua;
+        }
+        .statusline
+        {
+            position: absolute;
+            width: 100%;
+            height: 4px;
+            background-color: aliceblue;
+            z-index: -1;
+        }
+        .line
+        {
+           
+           position: absolute;
+            width: 80% ;
+            height: 100%;
+            background: aqua;
+        }
+      
+
+    </style>
+</head>
+<body>
+    <div id="statusbar">
+       <div class="container">
+        <span class="step">1</span>
+       <span class="step">2</span>
+       <span class="step">3</span>
+       <div class="statusline">
+        <span class="line"></span>
+     </div>
+       </div>
+   
+    </div>
+    <button onclick="progress()">next</button>
+</body>
+<script>
+
+    function progress()
+    {
+       const circle = document.querySelectorAll('.step')[0];
+       const active1 = new Array(0,1,2);
+       var activateclassname = -1;
+       if (activateclassname == -1)
+       {
+          circle.style.color='red';
+          activateclassname = 0;
+       }
+    }
+</script>
+</html>

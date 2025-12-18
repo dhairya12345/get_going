@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GET GOING - Driver Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/driver_dashboard.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">GET GOING</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="how_it_works.html">How It Works</a>
+                <a href="driver_dashboard.html" class="active">Drive</a>
+                <a href="rider_dashboard.html">Ride</a>
+                <div class="user-menu">
+                    <div class="user-avatar">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+                        <span>John D.</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="dropdown-menu">
+                        <a href="driver_profile.html"><i class="fas fa-user"></i> My Profile</a>
+                        <a href="driver_earnings.html"><i class="fas fa-wallet"></i> Earnings</a>
+                        <a href="driver_ratings.html"><i class="fas fa-star"></i> Ratings</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                        <a href="logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="how_it_works.html">How It Works</a>
+        <a href="driver_dashboard.html" class="active">Drive</a>
+        <a href="rider_dashboard.html">Ride</a>
+        <div class="mobile-user-menu">
+            <a href="driver_profile.html"><i class="fas fa-user"></i> My Profile</a>
+            <a href="driver_earnings.html"><i class="fas fa-wallet"></i> Earnings</a>
+            <a href="driver_ratings.html"><i class="fas fa-star"></i> Ratings</a>
+            <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+            <a href="logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </div>
+
+    <!-- Dashboard Layout -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-header">
+                <div class="user-info">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+                    <div>
+                        <h4>John Driver</h4>
+                        <p>Driver since 2023</p>
+                    </div>
+                </div>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <span>4.8</span>
+                    <span>(124 rides)</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-menu">
+                <a href="driver_dashboard.html" class="active"><i class="fas fa-home"></i> Dashboard</a>
+                <a href="driver_rides.html"><i class="fas fa-route"></i> My Rides</a>
+                <a href="driver_schedule.html"><i class="fas fa-calendar-alt"></i> Schedule</a>
+                <a href="driver_earnings.html"><i class="fas fa-wallet"></i> Earnings</a>
+                <a href="driver_ratings.html"><i class="fas fa-star"></i> Ratings</a>
+                <a href="driver_messages.html"><i class="fas fa-comments"></i> Messages</a>
+                <a href="driver_vehicle.html"><i class="fas fa-car"></i> My Vehicle</a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="offer_ride.html" class="btn btn-primary btn-block">
+                    <i class="fas fa-plus"></i> Offer New Ride
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-content">
+            <div class="content-header">
+                <h1>Driver Dashboard</h1>
+                <div class="header-actions">
+                    <button class="btn btn-outline">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </button>
+                    <button class="btn btn-outline">
+                        <i class="fas fa-question-circle"></i> Help
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Upcoming Rides</h3>
+                        <p>5 scheduled rides</p>
+                    </div>
+                    <a href="driver_schedule.html" class="stat-link">View All</a>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>This Month</h3>
+                        <p>₹8,450 earned</p>
+                    </div>
+                    <a href="driver_earnings.html" class="stat-link">Details</a>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Your Rating</h3>
+                        <p>4.8 from 124 rides</p>
+                    </div>
+                    <a href="driver_ratings.html" class="stat-link">See Reviews</a>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Your Vehicle</h3>
+                        <p>Hyundai Creta (DL 04 AB 1234)</p>
+                    </div>
+                    <a href="driver_vehicle.html" class="stat-link">Edit</a>
+                </div>
+            </div>
+            
+            <!-- Upcoming Rides Section -->
+            <section class="dashboard-section">
+                <div class="section-header">
+                    <h2>Upcoming Rides</h2>
+                    <a href="driver_schedule.html" class="btn btn-outline">View All</a>
+                </div>
+                
+                <div class="rides-list">
+                    <div class="ride-card">
+                        <div class="ride-date">
+                            <span class="day">15</span>
+                            <span class="month">MAR</span>
+                        </div>
+                        <div class="ride-details">
+                            <div class="route">
+                                <span class="from">New Delhi</span>
+                                <i class="fas fa-arrow-right"></i>
+                                <span class="to">Chandigarh</span>
+                            </div>
+                            <div class="ride-meta">
+                                <span><i class="fas fa-clock"></i> 07:30 AM</span>
+                                <span><i class="fas fa-chair"></i> 2/4 seats booked</span>
+                                <span><i class="fas fa-rupee-sign"></i> ₹500 per seat</span>
+                            </div>
+                        </div>
+                        <div class="ride-actions">
+                            <button class="btn btn-outline">Details</button>
+                            <button class="btn btn-primary">Message Passengers</button>
+                        </div>
+                    </div>
+                    
+                    <div class="ride-card">
+                        <div class="ride-date">
+                            <span class="day">17</span>
+                            <span class="month">MAR</span>
+                        </div>
+                        <div class="ride-details">
+                            <div class="route">
+                                <span class="from">Gurugram</span>
+                                <i class="fas fa-arrow-right"></i>
+                                <span class="to">Jaipur</span>
+                            </div>
+                            <div class="ride-meta">
+                                <span><i class="fas fa-clock"></i> 06:00 AM</span>
+                                <span><i class="fas fa-chair"></i> 3/4 seats booked</span>
+                                <span><i class="fas fa-rupee-sign"></i> ₹600 per seat</span>
+                            </div>
+                        </div>
+                        <div class="ride-actions">
+                            <button class="btn btn-outline">Details</button>
+                            <button class="btn btn-primary">Message Passengers</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Recent Earnings Section -->
+            <section class="dashboard-section">
+                <div class="section-header">
+                    <h2>Recent Earnings</h2>
+                    <a href="driver_earnings.html" class="btn btn-outline">View All</a>
+                </div>
+                
+                <div class="earnings-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Route</th>
+                                <th>Passengers</th>
+                                <th>Earnings</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>10 MAR 2023</td>
+                                <td>Delhi → Chandigarh</td>
+                                <td>3</td>
+                                <td>₹1,500</td>
+                                <td><span class="badge success">Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>08 MAR 2023</td>
+                                <td>Gurugram → Jaipur</td>
+                                <td>2</td>
+                                <td>₹1,200</td>
+                                <td><span class="badge success">Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>05 MAR 2023</td>
+                                <td>Noida → Agra</td>
+                                <td>3</td>
+                                <td>₹1,350</td>
+                                <td><span class="badge warning">Processing</span></td>
+                            </tr>
+                            <tr>
+                                <td>02 MAR 2023</td>
+                                <td>Delhi → Dehradun</td>
+                                <td>4</td>
+                                <td>₹2,000</td>
+                                <td><span class="badge success">Completed</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="{% static 'js/driver_dashboard.js'%}"></script>
+</body>
+</html>

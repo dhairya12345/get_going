@@ -1,0 +1,494 @@
+<!--created by: Dhairya Patel
+     time: 22/01/25 3:41-->
+     {% load static%}
+     <!DOCTYPE html>
+     <html lang="en">
+     <head>
+         <meta charset="UTF-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <title>Document</title>
+         <style>
+           html,body
+           {
+             
+             padding: 0;
+                margin: 0;
+                width: 100%;
+                height: 100%;
+             
+           }
+            .navmenu
+          {
+           display: none;
+          }
+          .navdrawer
+          {
+           display: none;
+          }
+     
+            
+             .navbar
+             {
+                 display: flex;
+                 flex-direction: row;
+                 width: 100%;
+                 height: auto;
+                 padding: 0;
+                 margin-top: 0;
+                 z-index: 2;
+                 position: absolute;
+                 background-color: transparent;
+             }
+         
+             .navtext
+             {
+                padding: 2%;
+                margin-bottom: 1%;
+                color: white;
+                font-family: sans-serif;
+                text-align: center;
+                font-size: 1rem;
+                animation-name: navtext;
+                animation-duration: 7s;
+                animation-delay: 0s;
+                border-bottom: 2px solid white;
+                border-width: 0;
+                transition: border-width 0.3s,border-bottom 0.3s ease
+                ;
+             }
+             .navtext:hover
+             {
+               border-bottom: 2px solid white;
+               border-width: 60%;
+             }
+             .navtextabout
+             {
+               padding: 2%;
+                color: white;
+                font-family: sans-serif;
+                text-align: center;
+                font-size: 1rem;
+                animation-name: navtext;
+                animation-duration: 7s;
+                animation-delay: 0s; 
+                border-bottom: 2px solid white;
+                border-width: 0;
+                transition: border-width 0.3s,border-bottom 0.3s ease
+             }
+             .navtextabout:hover
+             {
+               border-bottom: 2px solid white;
+               border-width: 60%;
+             }
+             .navtextnews
+             {
+               padding: 2%;
+                color: white;
+                font-family: sans-serif;
+                text-align: center;
+                font-size: 1rem;
+                animation-name: navtext;
+                animation-duration: 7s;
+                animation-delay: 0s; 
+                border-bottom: 2px solid white;
+                border-width: 0;
+                transition: border-width 0.3s,border-bottom 0.3s ease
+             }
+             .navtextnews:hover
+             {
+               border-bottom: 2px solid white;
+               border-width: 60%;
+             }
+             .content
+             {
+                 width: 100%;
+                 height: auto;
+                 margin: 0;
+                 padding: 0;
+             }
+             video
+             {
+                 padding: 0;
+                 margin: 0;
+                 width: 100vw;
+                 height: 100vh;
+                 top: 0;
+                 left: 0;
+                 object-fit: cover;
+                 animation-name: startanim;
+                 animation-duration: 5s;
+                 animation-delay: 0s;
+                 z-index: -1;
+                 position: absolute;
+                 
+             }
+             .headingcontainer
+             {
+               position: absolute;
+                 margin-top: 10%;
+                 margin-left: 2%;
+                 font-size: 2rem;
+             }
+             .mainheading
+             {
+                 color: white;
+                 font-family: sans-serif;
+               
+                 
+                 animation-name: navtext;
+                animation-duration: 7s;
+                animation-delay: 0s;
+             }
+             .mainsecondheading
+             {
+                 color: white;
+                 font-family: sans-serif;
+                
+                 
+                 position: absolute;
+                 margin-top: 3%;
+                 margin-left: 6%;
+                
+                 animation-name: navtext;
+                animation-duration: 7s;
+                animation-delay: 3s; 
+             }
+             #text1
+             {
+                 stroke-dasharray: 400; /* This is the total length of the text path */
+               stroke-dashoffset: 400; /* Start with the text hidden */
+               animation: writing 4s ease-in-out forwards; /* Animate the writing */
+               animation-delay: 8s;
+             }
+             text {
+               stroke-dasharray: 400; /* This is the total length of the text path */
+               stroke-dashoffset: 400; /* Start with the text hidden */
+               animation: writing 4s ease-in-out forwards; /* Animate the writing */
+               animation-delay: 7s;
+               
+             }
+             #scroller
+             {
+                margin-top: 0;
+                position: absolute;
+                background-color: white;
+                z-index: 1;
+                width: 100%;
+                height: 60%;
+                transform:translateY(-100%);
+                display: flex;
+                flex-direction: row;
+                align-items: start;
+                transition: 300ms ease;
+             }
+             .scrollercardview
+             {
+                 width: 25%;
+                 height: 70%;
+                 margin-left: 5%;
+                 margin-top: 7%;
+                 background-color: white;
+                 display: none;
+                 flex-direction: column;
+                 align-items: center;
+                 animation-delay: 0s;
+                 animation-duration: 1s;
+                 animation-name: scrollcard;
+                
+             }
+             @keyframes scrollcard 
+             {
+               0%
+               {
+                 visibility: hidden;
+               }
+               50%
+               {
+                 visibility: hidden;
+               }
+               100%{
+                 visibility: visible;
+               }
+             }
+             .scrollercardview1
+             {
+                 width: 25%;
+                 height: 70%;
+                 margin-left: 5%;
+                 margin-top: 7%;
+                 background-color: white;
+                 display: none;
+                 flex-direction: column;
+                 align-items: center;
+                 
+             }
+     
+             @keyframes writing {
+               0% {
+             opacity: 0; /* Keep text hidden initially */
+             stroke-dashoffset: 400; /* Keep text hidden */
+           }
+           10% {
+             opacity: 1; /* Make text visible */
+           }
+           100% {
+             stroke-dashoffset: 0; /* Reveal the text fully */
+           }
+             }
+             
+             @keyframes navtext {
+                0%
+                {
+                 visibility: hidden;
+                }
+                75%
+                {
+                 visibility: hidden;
+                }
+                100%
+                {
+                 visibility: visible;
+                }
+                 
+             }
+             @keyframes startanim{
+                 0%
+                 {
+                     transform: scale(40%,80%);
+                     margin-top: 110vh;
+                     border-radius: 2%;
+                   
+                 }
+                 25%
+                 {
+                     transform: scale(40%,46%);
+                     margin-top: 0;
+                     border-radius: 2%;
+                 }
+                 100%
+                 {
+                     transform: scale(100%,100%);
+                     border-radius: 0%;
+                 }
+             }
+     
+        
+             @media (min-width: 320px) and (max-width: 768px){
+           
+     
+           .navtext,.navtextabout,.navtextnews
+           {
+              display: none;
+           }
+           .navmenu
+           {
+             z-index: 2;
+             display: block;
+             padding: 2%;
+             float: right;
+              margin-bottom: 1%;
+              color: white;
+              font-family: sans-serif;
+              text-align: center;
+              font-size: 1.2rem;
+              animation-name: navtext;
+              animation-duration: 7s;
+              animation-delay: 0s;
+              border-bottom: 2px solid white;
+              border-width: 0;
+              transition: border-width 0.3s,border-bottom 0.3s ease 
+           }
+           .navmenu:hover
+           {
+             border-bottom: 2px solid white;
+             border-width: 60%;
+           }
+           .mainheading
+           {
+             margin-top: 40%;
+             
+           }
+           .mainsecondheading
+           {
+             margin-top: 6%;
+            
+           }
+           .navdrawer
+           {
+             z-index: 1;
+             position: fixed;
+             display: block;
+             height: 100%;
+             width: 60%;
+             transform: translateX(110%);
+             background-color: black;
+             top: 0;
+             right: 0;
+             transition: 2s ease-in-out;
+           }
+           .navdraweritem
+           {
+             padding: 2%;
+             font-size: 1.5em;
+             cursor:pointer;
+           }
+          .lineh
+          {
+           width: 100%;
+           border-top: 3%solid black;
+          }
+         
+         }
+        
+         </style>
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+         <script>
+         $(document).ready(function(){
+             $(".navtextabout").hover(
+                 function(){
+                     // On hover in, move the element down
+                     $(scroller).css("transform", "translateY(0%)");
+                     $(".navtext").css("color","black");
+                     $(".navtextnews").css("color","black");
+                     $(".navbar").css("background-color","white");
+                     $(".scrollercardview1").css("display","none")
+                     $(".scrollercardview").css("display","flex");
+                     $(this).css("color","black");
+                     $(this).css("border-color","black");
+                     
+     
+                 }
+             );
+             $(".navtext").hover(function(){
+               $(".scrollercardview1").css("display","none")
+               $(".scrollercardview").css("display","none");
+               $(scroller).css("transform","translateY(-100%)");
+               $(".navbar").css("background-color","transparent");
+               $(".navtext").css("color","white");
+               $(".navtextabout").css("color","white");
+               $(".navtextnews").css("color","white");
+             });
+            
+             $(scroller).hover(function(){},function(){
+               $(".navbar").css("background-color","transparent");
+                $(this).css("transform", "translateY(-100%)");
+                $(".scrollercardview1").css("display","none")
+                $(".scrollercardview").css("display","none");
+                $(".navtext").css("color","white");
+                $(".navtextabout").css("color","white");
+                $(".navtextnews").css("color","white");
+                
+             });
+             $(".navmenu").hover(function(){
+               $(".navdrawer").css("transform","translateX(0)");
+             });
+             $(".navdrawer").hover(function(){},function(){
+               $(this).css("transform","translateX(110%)");
+             });
+         });
+         function adjustVideoHeight() {
+                 var video = document.querySelector('video');
+                 var nav = document.querySelector('.navbar');
+                 var scroll = document.querySelector('#scroller')
+                 var navdrawer = document.querySelector('.navdrawer');
+                 var windowHeight = window.innerHeight;
+                 var windowWidth = window.innerWidth;
+     
+                 video.style.width= windowWidth + 'px';
+                 video.style.height = windowHeight + 'px';
+                 nav.style.width = windowWidth + 'px';
+                 scroll.style.width = windowWidth + 'px';
+                 navdrawer.style.height = windowHeight + 'px';
+                 
+                 
+             }
+     
+             // Call the function initially and on resize
+             window.addEventListener('resize', adjustVideoHeight);
+             window.addEventListener('load', adjustVideoHeight);
+     </script>
+     
+              
+         </script>
+     </head>
+     
+     <body>
+         
+         <div class="content">
+             <div class="navbar">
+                 <nav style=" margin-top: 2%;width: 100%;">
+                   <a class="navmenu">MENU</a>
+                     <div style="float: left;width: 50%;">
+                         <a class="navtext">HOME</a>
+                         <a class="navtextabout">ABOUT US</a>
+                     </div>
+                     <div style="float: right;width: 50%;text-align: right;">
+                         <a class="navtext" onclick="window.location.href='http://127.0.0.1:8000/customer/signup'">SIGNUP</a>
+                         <a onclick="window.location.href='http://127.0.0.1:8000/customer/login/'" class="navtext">LOG IN</a>
+                     </div>
+                    
+     
+                 </nav>
+            </div>
+            
+             <div class="navdrawer">
+                  <div style="display: flex;flex-direction: column;align-items: left;color: white;margin-top: 12%">
+                     <hr style="width: 100%;margin-top: 10%;">
+                     <div class="navdraweritem">HOME</div>
+                     <hr style="width: 100%;">
+                     <div class="navdraweritem">ABOUT US </div>
+                     
+                     <div class="navdraweritem" style="margin-left: 4%;font-size: 1em;">DRIVER</div>
+                     <div class="navdraweritem" style="margin-left: 4%;font-size: 1em;">RIDER</div>
+                     <hr style="width: 100%;">
+                     <div class="navdraweritem" onclick="window.location.href='http://127.0.0.1:8000/customer/signup'">SIGNUP</div>
+                     <hr style="width: 100%;">
+                     <div class="navdraweritem" onclick="window.location.href='http://127.0.0.1:8000/customer/login/'">LOGIN</div>
+                     <hr style="width: 100%;">
+                  </div>
+             </div>
+            
+           <div class="headingcontainer">
+             <div class="mainheading">
+               <svg xmlns="http://www.w3.org/2000/svg" width="500" height="100" viewBox="0 0 500 100">
+                   <!-- Text element for the phrase "get going" -->
+                   <text x="10" y="50" font-family="'Dancing Script', cursive" font-size="70" fill="transparent" stroke="white" stroke-width="2">
+                     get going
+                   </text>
+                 </svg>     
+              </div>
+              <div class="mainsecondheading">
+               <svg xmlns="http://www.w3.org/2000/svg" width="500" height="100" viewBox="0 0 500 100">
+                   <!-- Text element for the phrase "get going" -->
+                   <text id="text1" x="10" y="50" font-family="'Dancing Script', cursive" font-size="60" fill="transparent" stroke="white" stroke-width="2">
+                     book your rides
+                   </text>
+                 </svg>     
+              </div>
+           </div>
+           
+            <div id="scroller">
+             
+             <div class="scrollercardview" onclick="window.location.href='http://127.0.0.1:8000/customer/driver_aboutus'">
+                  <img src="https://www.ezidrive.in/blog/wp-content/uploads/2019/06/blog-2.jpg" style="width: 100%; height: 90%;background-color: black;border-radius: 3%;">
+                  <h3 style="text-align: center;">Driver</h3>
+             </div>
+             <div  class="scrollercardview" style="margin-left: 1%;" onclick="window.location.href='http://127.0.0.1:8000/customer/rider_aboutus'">
+               <img src="https://www.shutterstock.com/image-photo/taxi-phone-app-cab-car-600nw-2160398977.jpg"style="width: 100%; height: 90%;background-color: black;border-radius: 3%;">
+               <h3 style="text-align: center;">Rider</h3>
+             </div>
+     
+             <div class="scrollercardview1">
+               <img style="width: 100%; height: 90%;background-color: black;border-radius: 3%;">
+               <h3 style="text-align: center;">NEW NEWS</h3>
+             </div>
+     
+           </div>
+         
+             <video autoplay loop muted>
+                 <source src="{% static 'videos/login.mp4' %}" type="video/mp4">
+             </video>
+            
+         </div>
+     </body>
+     </html>

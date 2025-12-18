@@ -1,0 +1,338 @@
+<!--created by: Dhairya Patel
+     time: 27/01/25 5:41-->
+     {%load static%}
+     <!DOCTYPE html>
+     <html lang="en">
+     <head>
+         <meta charset="UTF-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <title>SIGN UP</title>
+         <style>
+              html,body
+              {
+                 margin: 0;
+                 padding: 0;
+                 font-size: 2vw;
+              }
+             #container
+             {
+             
+                 width: 100%;
+                 height: 100%;
+                 padding: 0;
+                 position: absolute;
+                 margin: 0;
+                 object-fit: cover;
+             }
+             #container1
+             {
+                 width: 50%;
+                 padding-bottom: 2%;
+                 height: auto;
+                 background-color: #ddd9d9;
+                 position: absolute;
+                 z-index: 1;
+                margin: auto;
+             }
+             #bgimage
+             {
+                 width: 100%;
+                 height: 100%;
+                 padding: 0;
+                 margin: 0;
+                 object-fit: cover;
+                 z-index: -1;
+             }
+            
+            #middheader
+             {
+                 margin-top: 0;
+                 top: 0;
+                 left: 0;
+                 position: relative;
+                 background-color: rgb(242, 242, 242);
+                 font-size: 0.5rem;
+                 width: 100%;
+                 height: 15%;
+                 font-family: Arial, Helvetica, sans-serif;
+                 color: black;
+                 text-align: center;
+                 overflow: hidden;
+             }
+           
+             .inputcontainer
+             {
+                 position: relative;
+                 margin: 0;
+                 padding: 0;
+                 width: 100%;
+                 height: 50%;
+                 background-color:  #ddd9d9;
+                 display: flex;
+                 flex-direction: column;
+             }
+             .inputtextcontainer
+             {
+                 position: relative;
+                 
+                 padding: 0;
+                 width: 100%;
+                 height: 1.5rem;
+                 margin-top: 2.9%;
+             }
+             .inputtext
+             {
+                 padding-left: 1%;
+                 width: 60%;
+                 height: 100%;
+                 margin-left: auto;
+                 border: 0.06rem solid rgba(0, 0, 0, 0.739);
+                 border-radius: 0.2rem;
+                 outline: none;
+                 background-color:  #ddd9d9;
+                 font-size: 0.6rem;
+             }
+             .invalid
+             {
+                border-color: red;
+             }
+             .placeholdertext
+             {
+                padding-left: 1%;
+                padding-right: 1%;
+                left: 21%;
+                top: 30%;
+                position: absolute;
+                font-size: 0.5rem;
+                font-family: Arial, Helvetica, sans-serif;
+                color: rgb(137, 136, 136);
+                pointer-events: none;
+                transition: 250ms ease;
+                
+             }
+             .buttoncontainer
+             {
+                 position: relative;
+                 width: 100%;
+                 margin-top: 5%;
+                 
+                 display: flex;
+                 flex-direction: column;
+                 align-items: center;
+                
+             }
+            
+             @media (min-width: 320px) and (max-width: 768px) and (orientation: portrait)
+             {
+                 
+                 #container1
+                 {
+                      width: 90%;
+                      height: auto;
+                 }
+                 #middheader
+                 {
+                    height: 10%;
+                    font-size: 1rem;
+                 }
+                 .inputtextcontainer
+                 {
+                     height: 3.5rem;
+                 }
+                 .placeholdertext
+                 {
+                     font-size: 1rem;
+                 }
+                 .gloginbtn
+             {
+                 width: 2rem;
+                 height: 2rem;
+                 
+             }
+         }
+             
+         </style>
+         <script>
+            var fromvalidate=0;
+
+            function validate()
+            {  fromvalidate = 1;
+        
+                var inputlabel = document.querySelectorAll(".placeholdertext");
+                const borderinput = document.getElementsByClassName("inputtext");
+                var email = document.forms['myform']['email'].value;
+                var name = document.forms['myform']['name'].value;
+                var repassword = document.forms['myform']['repassword'].value;
+                var password = document.forms['myform']['password'].value;
+                var phone = document.forms['myform']['phone'].value;
+                var passwordRequirements = `
+      Password must:
+      - Contain at least one lowercase letter (a-z)
+      - Contain at least one uppercase letter (A-Z)
+      - Contain at least one digit (0-9)
+      - Contain at least one special character from: !@#$%^&*(),.?":{}|<>
+      - Be at least 8 characters long
+    `;
+                const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                const nameRegex = /^[A-Za-z-' ]+$/;
+                const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
+           
+
+                const indiaPhoneRegex = /^(?:\+91|91)?[-.\s]?\(?\d{10}\)?$/;
+                if(!nameRegex.test(name))
+                {
+                    borderinput[0].classList.add("invalid") // Adding !important to ensure it overrides other styles
+                inputlabel[0].style.color = "red";  // Change label color
+            
+                alert("Enter a valid name");
+                
+                return false;
+                
+                    
+                }
+                else if(!passwordRegex.test(password))
+                {    
+                     borderinput[1].style.borderColor="red";
+                     inputlabel[1].style.color="red";
+                     alert(passwordRequirements);
+                     return false;
+                }
+                else if(password!=repassword)
+                 {
+                    borderinput[2].style.borderColor="red";
+                     inputlabel[2].style.color="red";
+                     alert("password not match");
+                     return false;
+                 }
+                 else if(!emailRegex.test(email))
+                 {
+                    borderinput[3].style.borderColor="red";
+                     inputlabel[3].style.color="red";
+                     alert("enter valid email");
+                     return false;
+                 }
+                 else if(!indiaPhoneRegex.test(phone))
+                 {
+                    borderinput[4].style.borderColor="red";
+                     inputlabel[4].style.color="red";
+                     alert("enter valid phone number");
+                     return false;
+                 }
+                 else 
+                 {
+                    return true;
+         
+                 }
+        
+            }
+
+            window.onload = function() {
+                Array.from(document.getElementsByClassName('inputtext')).forEach(input => {
+                    input.value = '';
+                });
+            };
+      
+         </script>
+        
+     </head>
+     <body>
+        <div id="container">
+            <img src="bgimage.jpg" id="bgimage">
+        </div>
+        <div id="container1">
+            <div id="middheader">
+                 <h2>GET GOING<h2>
+            </div>
+            <form method="post" name="myform" onsubmit="return validate()">
+            {% csrf_token %}
+            <div class="inputcontainer">
+             <div style="margin-top: 4%;" class="inputtextcontainer">
+                 <div class="placeholdertext">Enter Name</div>
+                 <input autocomplete="off" name="name" class="inputtext" type="text">
+             </div>
+             <div class="inputtextcontainer">
+                 <div class="placeholdertext">Enter Password</div>
+                 <input autocomplete="off"  name="password" class="inputtext" type="password">
+             </div>
+             <div class="inputtextcontainer">
+                <div class="placeholdertext">Enter Conform Password</div>
+                <input autocomplete="off" name="repassword" class="inputtext" type="password">
+            </div>
+            <div class="inputtextcontainer">
+                <div class="placeholdertext">Enter Email</div>
+                <input autocomplete="off" name="email" class="inputtext" type="email">
+            </div>
+            <div class="inputtextcontainer">
+                <div class="placeholdertext">Enter Phone</div>
+                <input autocomplete="off" name="phone" class="inputtext" type="tel">
+            </div>
+            </div>
+            <div class="buttoncontainer">
+                  <input autocomplete="off" type="submit" value="next">
+            </div>
+         </form>
+          
+        </div>
+        <script>
+         const middleElement = () => {
+          const abc = document.getElementById('container1');
+          abc.style.marginLeft = window.innerWidth/2 - abc.offsetWidth/2 + 'px';
+          abc.style.marginTop = window.innerHeight/2 - abc.offsetHeight/2 + 'px';
+     
+          const inputtext = document.getElementsByClassName('inputtext');
+          for(let i=0;i<inputtext.length;i++)
+          {
+               inputtext[i].style.marginLeft = abc.offsetWidth/2 - inputtext[i].offsetWidth/2 + 'px';
+          }
+          
+         }
+         middleElement();
+         window.addEventListener('resize', middleElement);
+     
+         const inputs = document.querySelectorAll('.inputtext');
+         if(fromvalidate==0)
+         {
+inputs.forEach(input => {
+    const placeholder = input.previousElementSibling;
+   
+    input.addEventListener('input',()=>{
+        if(event.target.value.trim()!=="")
+        {
+                 placeholder.style.transform='translateY(-135%)';
+            input.style.borderColor = "rgb(31, 178, 31)";
+            placeholder.style.color = "rgb(31, 178, 31)";
+            placeholder.style.backgroundColor = "#ddd9d9";
+        }
+     
+    });
+    input.addEventListener('click',()=>{
+      
+        placeholder.style.transform='translateY(-135%)';
+        input.style.borderColor = "rgb(31, 178, 31)";
+        placeholder.style.color = "rgb(31, 178, 31)";
+        placeholder.style.backgroundColor = "#ddd9d9";
+       
+    });
+    input.addEventListener('blur',()=>{
+        let textvalue = event.target.value;
+        if(textvalue.trim() === "")
+    {
+        placeholder.style.transform='translateY(0)';
+        input.style.borderColor = "rgba(0, 0, 0, 0.739)";
+        placeholder.style.color = "rgb(137, 136, 136)";
+       
+    }
+       
+    });
+   
+
+});
+     
+     
+}   
+     
+     
+     
+       </script>
+     </body>
+     </html>

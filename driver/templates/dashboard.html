@@ -1,0 +1,678 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Going - Driver Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #10b981;
+            --accent-color: #f59e0b;
+            --danger-color: #ef4444;
+            --dark-color: #1f2937;
+            --light-color: #ffffff;
+            --gray-color: #e5e7eb;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --border-radius: 8px;
+            --spacing-unit: 1.5rem;
+            --compact-spacing: 0.5rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: #f9fafb;
+            color: var(--dark-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: row;
+        }
+
+        .sidebar {
+            width: 240px;
+            background: linear-gradient(180deg, var(--primary-color), #1e40af);
+            color: var(--light-color);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, width 0.3s ease;
+            position: fixed;
+            height: 100vh;
+            z-index: 1000;
+        }
+
+        .sidebar-header {
+            padding: var(--spacing-unit);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .sidebar-header i {
+            font-size: 1.4rem;
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .sidebar-menu {
+            padding: 0.75rem 0;
+        }
+
+        .menu-item {
+            padding: 1rem var(--spacing-unit);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .menu-item:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: translateX(3px);
+        }
+
+        .menu-item.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-left: 3px solid var(--secondary-color);
+        }
+
+        .menu-item i {
+            font-size: 1rem;
+            width: 1.4rem;
+            text-align: center;
+        }
+
+        .menu-item span {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 240px;
+            transition: margin-left 0.3s ease;
+            padding: var(--spacing-unit);
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem var(--spacing-unit);
+            background: var(--light-color);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 900;
+            margin-bottom: var(--spacing-unit);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .user-profile:hover {
+            background: var(--gray-color);
+            transform: translateY(-1px);
+        }
+
+        .user-profile img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .user-profile:hover img {
+            transform: scale(1.05);
+        }
+
+        .notification-icon {
+            position: relative;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 1rem;
+        }
+
+        .notification-icon:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--danger-color);
+            color: var(--light-color);
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            font-size: 0.65rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+        }
+
+        .welcome-banner {
+            background: linear-gradient(135deg, var(--primary-color), #3b82f6);
+            color: var(--light-color);
+            padding: var(--spacing-unit);
+            border-radius: var(--border-radius);
+            margin-bottom: var(--spacing-unit);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .welcome-banner:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .welcome-text h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .welcome-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .go-online-btn {
+            background: var(--secondary-color);
+            color: var(--light-color);
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .go-online-btn:hover {
+            background: #059669;
+            transform: scale(1.03);
+            box-shadow: var(--shadow);
+        }
+
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: var(--spacing-unit);
+            margin-bottom: var(--spacing-unit);
+        }
+
+        .stat-card {
+            background: var(--light-color);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-unit);
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 14px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-info h3 {
+            color: #6b7280;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-info h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover .stat-info h2 {
+            color: var(--primary-color);
+        }
+
+        .stat-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover .stat-icon {
+            transform: scale(1.05);
+        }
+
+        .earnings { background: rgba(37, 99, 235, 0.1); color: var(--primary-color); }
+        .rides { background: rgba(16, 185, 129, 0.1); color: var(--secondary-color); }
+        .rating { background: rgba(245, 158, 11, 0.1); color: var(--accent-color); }
+        .hours { background: rgba(239, 68, 68, 0.1); color: var(--danger-color); }
+
+        .ride-history table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--light-color);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: var(--spacing-unit);
+        }
+
+        .ride-history th, .ride-history td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-color);
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .ride-history th {
+            background: #f3f4f6;
+            font-weight: 600;
+            color: #6b7280;
+        }
+
+        .ride-history tr:last-child td {
+            border-bottom: none;
+        }
+
+        .ride-history tr:hover td {
+            background: #f9fafb;
+            transform: translateX(1px);
+        }
+
+        .status-badge {
+            padding: 0.4rem 0.75rem;
+            border-radius: 16px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .ride-history tr:hover .status-badge {
+            transform: scale(1.03);
+        }
+
+        .completed { background: rgba(16, 185, 129, 0.1); color: var(--secondary-color); }
+        .cancelled { background: rgba(239, 68, 68, 0.1); color: var(--danger-color); }
+
+        .estimated-price {
+            font-weight: 600;
+            color: var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+
+        .ride-history tr:hover .estimated-price {
+            font-weight: 700;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-unit);
+        }
+
+        .section-header h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .view-all {
+            color: var(--primary-color);
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .view-all:hover {
+            text-decoration: underline;
+            transform: translateX(2px);
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 70px;
+            }
+
+            .sidebar-header h2, .menu-item span {
+                display: none;
+            }
+
+            .menu-item {
+                justify-content: center;
+                padding: 1rem;
+            }
+
+            .menu-item i {
+                margin-right: 0;
+                font-size: 1.2rem;
+            }
+
+            .main-content {
+                margin-left: 70px;
+            }
+
+            .stats-cards {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stats-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .welcome-banner {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .welcome-text h1 {
+                font-size: 1.3rem;
+            }
+
+            .welcome-text p {
+                font-size: 0.85rem;
+            }
+
+            .go-online-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .stat-info h2 {
+                font-size: 1.3rem;
+            }
+
+            .ride-history table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+
+            .section-header h2 {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 200px;
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: var(--compact-spacing);
+            }
+
+            .top-nav {
+                padding: 0.75rem;
+            }
+
+            .menu-toggle {
+                display: block;
+                position: fixed;
+                top: 0.75rem;
+                left: 0.75rem;
+                font-size: 1.3rem;
+                z-index: 1001;
+                cursor: pointer;
+                color: var(--primary-color);
+                background: var(--light-color);
+                padding: 0.5rem;
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow);
+            }
+
+            .user-profile span {
+                display: none;
+            }
+
+            .welcome-text h1 {
+                font-size: 1.2rem;
+            }
+
+            .welcome-text p {
+                font-size: 0.8rem;
+            }
+
+            .stat-info h2 {
+                font-size: 1.2rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.1rem;
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-car"></i>
+                <h2>Get Going</h2>
+            </div>
+            <div class="sidebar-menu">
+                <div class="menu-item active">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </div>
+                <div class="menu-item" onclick="window.location.href='http://127.0.0.1:8000/driver/login/dashboard/vehicledetails'">
+                    <i class="fas fa-car"></i>
+                    <span>Add Vehical</span>
+                </div>
+                <div class="menu-item" onclick="window.location.href='http://127.0.0.1:8000/driver/login/dashboard/earnings'">
+                    <i class="fas fa-wallet"></i>
+                    <span>Earnings</span>
+                </div>
+                <div class="menu-item" onclick="window.location.href='http://127.0.0.1:8000/driver/login/dashboard/driverridedetails'">
+                    <i class="fas fa-user"></i>
+                    <span>Ride Add & (Accept or Reject Ride)</span>
+                </div>
+                <div class="menu-item" onclick="window.location.href='http://127.0.0.1:8000/driver/login/dashboard/settings1'">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </div>
+                <div class="menu-item" onclick="window.location.href='http://127.0.0.1:8000/driver/login/dashboard/help'">
+                    <i class="fas fa-question-circle"></i>
+                    <span>Help & Support</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="top-nav">
+                <div class="nav-left">
+                    <div class="menu-toggle" id="menuToggle" aria-label="Toggle sidebar">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+                <div class="nav-right">
+                    <div class="notification-icon">
+                        <i class="fas fa-bell"></i>
+                        <div class="notification-badge">3</div>
+                    </div>
+                    <div class="user-profile">
+                        <img src="{% static user_data.profile_img%}" alt="User Profile">
+                        <span>{{user_data.name}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-content">
+                <div class="welcome-banner">
+                    <div class="welcome-text">
+                        <h1>Welcome, {{user_data.name}}!</h1>
+                        <p>Ready to connect with riders and drive with Get Going?</p>
+                    </div>
+                    <button class="go-online-btn" id="goOnlineBtn">
+                        <i class="fas fa-power-off"></i> Go Online
+                    </button>
+                </div>
+
+                <div class="stats-cards">
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3>Total Earnings</h3>
+                            <h2>{{earning}}</h2>
+                        </div>
+                        <div class="stat-icon earnings">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3>Total Rides</h3>
+                            <h2>{{total_ride}}</h2>
+                        </div>
+                        <div class="stat-icon rides">
+                            <i class="fas fa-car"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3>Your Rating</h3>
+                            <h2>4.8</h2>
+                        </div>
+                        <div class="stat-icon rating">
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3>Online Hours</h3>
+                            <h2>5.2</h2>
+                        </div>
+                        <div class="stat-icon hours">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ride-history">
+                    <div class="section-header">
+                        <h2>Recent Rides</h2>
+                        <span class="view-all">View All</span>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Rider</th>
+                                <th>Pickup</th>
+                                <th>Dropoff</th>
+                                <th>Status</th>
+                                <th>Estimated Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {%for ride in tabel_data%}
+                            <tr>
+                                <td>{{ride.avl_ride.date}}, {{ride.avl_ride.time}}</td>
+                                <td>{{ride.u_id.name}}</td>
+                                <td>{{ride.avl_ride.pick_up}}</td>
+                                <td>{{ride.avl_ride.destination}}</td>
+                                <td><span class="status-badge completed">{{ride.ride_type}}</span></td>
+                                <td class="estimated-price">{{ride.avl_ride.price}}</td>
+                            </tr>
+                            {% endfor %}
+                           
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const rootStyles = getComputedStyle(document.documentElement);
+
+        // Sidebar toggle
+        document.getElementById('menuToggle').addEventListener('click', () => {
+            document.getElementById('sidebar').classList.toggle('active');
+        });
+
+        // Go Online/Offline
+        const goOnlineBtn = document.getElementById('goOnlineBtn');
+        let isOnline = false;
+        goOnlineBtn.addEventListener('click', function() {
+            isOnline = !isOnline;
+            this.innerHTML = `<i class="fas fa-power-off"></i> ${isOnline ? 'Go Offline' : 'Go Online'}`;
+            this.style.backgroundColor = isOnline ? rootStyles.getPropertyValue('--danger-color').trim() : rootStyles.getPropertyValue('--secondary-color').trim();
+            this.classList.toggle('pulse', isOnline);
+        });
+
+        // Notification clear
+        document.querySelector('.notification-icon').addEventListener('click', function() {
+            this.querySelector('.notification-badge').style.display = 'none';
+        });
+    </script>
+</body>
+</html>

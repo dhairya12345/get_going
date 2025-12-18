@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Going System | Available Rides</title>
+    <link rel="stylesheet" href="available_rides.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="user_home.html" class="logo">GET GOING</a>
+            <div class="nav-links">
+                <a href="user_home.html"><i class="fas fa-home"></i> Home</a>
+                <a href="available_rides.html" class="active"><i class="fas fa-car"></i> Available Rides</a>
+                <a href="ride_history.html"><i class="fas fa-history"></i> Ride History</a>
+                <a href="#"><i class="fas fa-wallet"></i> Wallet</a>
+                <div class="dropdown">
+                    <button class="dropbtn">
+                        <i class="fas fa-user-circle"></i> Profile <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#"><i class="fas fa-user"></i> My Account</a>
+                        <a href="#"><i class="fas fa-cog"></i> Settings</a>
+                        <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="available-rides-page">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1>Available Rides Near You</h1>
+                <p>Find the perfect ride for your journey</p>
+            </div>
+
+            <!-- Filters Section -->
+            <section class="filters-section">
+                <div class="filters-toggle">
+                    <button class="btn-outline" id="toggle-filters">
+                        <i class="fas fa-sliders-h"></i> Filters
+                    </button>
+                </div>
+
+                <div class="filters-container" id="filters-container">
+                    <div class="filter-group">
+                        <h3>Price Range</h3>
+                        <div class="price-range">
+                            <input type="range" id="price-range" min="50" max="1000" step="50" value="500">
+                            <div class="price-values">
+                                <span>₹50</span>
+                                <span id="current-price">₹500</span>
+                                <span>₹1000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h3>Distance</h3>
+                        <div class="distance-options">
+                            <label class="distance-option">
+                                <input type="radio" name="distance" value="1" checked>
+                                <span class="radio-btn"></span>
+                                <span>Within 1 km</span>
+                            </label>
+                            <label class="distance-option">
+                                <input type="radio" name="distance" value="5">
+                                <span class="radio-btn"></span>
+                                <span>Within 5 km</span>
+                            </label>
+                            <label class="distance-option">
+                                <input type="radio" name="distance" value="10">
+                                <span class="radio-btn"></span>
+                                <span>Within 10 km</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h3>Rating</h3>
+                        <div class="rating-options">
+                            <label class="rating-option">
+                                <input type="radio" name="rating" value="4" checked>
+                                <span class="radio-btn"></span>
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>& Up</span>
+                                </div>
+                            </label>
+                            <label class="rating-option">
+                                <input type="radio" name="rating" value="3">
+                                <span class="radio-btn"></span>
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>& Up</span>
+                                </div>
+                            </label>
+                            <label class="rating-option">
+                                <input type="radio" name="rating" value="2">
+                                <span class="radio-btn"></span>
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>& Up</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h3>Vehicle Type</h3>
+                        <div class="vehicle-types">
+                            <label class="vehicle-option">
+                                <input type="checkbox" name="vehicle-type" value="hatchback" checked>
+                                <span class="checkmark"></span>
+                                <i class="fas fa-car"></i> Hatchback
+                            </label>
+                            <label class="vehicle-option">
+                                <input type="checkbox" name="vehicle-type" value="sedan" checked>
+                                <span class="checkmark"></span>
+                                <i class="fas fa-car"></i> Sedan
+                            </label>
+                            <label class="vehicle-option">
+                                <input type="checkbox" name="vehicle-type" value="suv" checked>
+                                <span class="checkmark"></span>
+                                <i class="fas fa-car"></i> SUV
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h3>Departure Time</h3>
+                        <div class="time-options">
+                            <label class="time-option">
+                                <input type="radio" name="time" value="any" checked>
+                                <span class="radio-btn"></span>
+                                <span>Any Time</span>
+                            </label>
+                            <label class="time-option">
+                                <input type="radio" name="time" value="morning">
+                                <span class="radio-btn"></span>
+                                <span>Morning (6AM - 12PM)</span>
+                            </label>
+                            <label class="time-option">
+                                <input type="radio" name="time" value="afternoon">
+                                <span class="radio-btn"></span>
+                                <span>Afternoon (12PM - 6PM)</span>
+                            </label>
+                            <label class="time-option">
+                                <input type="radio" name="time" value="evening">
+                                <span class="radio-btn"></span>
+                                <span>Evening (6PM - 12AM)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-actions">
+                        <button class="btn-outline" id="reset-filters">Reset All</button>
+                        <button class="btn-primary" id="apply-filters">Apply Filters</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sort Options -->
+            <div class="sort-options">
+                <label for="sort-by">Sort by:</label>
+                <select id="sort-by">
+                    <option value="price-low">Price (Low to High)</option>
+                    <option value="price-high">Price (High to Low)</option>
+                    <option value="distance">Distance (Nearest)</option>
+                    <option value="rating">Rating (Highest)</option>
+                    <option value="departure-early">Departure (Earliest)</option>
+                </select>
+            </div>
+
+            <!-- Rides List -->
+            <section class="rides-list-section">
+                <div class="rides-list" id="rides-list">
+                    <!-- Ride cards will be inserted here by JavaScript -->
+                </div>
+
+                <div class="loading-state" id="loading-state">
+                    <div class="loading-spinner">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                    <p>Loading available rides...</p>
+                </div>
+
+                <div class="no-results" id="no-results" style="display: none;">
+                    <img src="8.png" alt="No results found">
+                    <h3>No rides available</h3>
+                    <p>Try adjusting your filters or check back later</p>
+                    <button class="btn-primary" id="reset-filters-btn">Reset Filters</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>GET GOING</h3>
+                    <p>Ride-sharing made simple, affordable, and eco-friendly.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="user_home.html">Home</a></li>
+                        <li><a href="available_rides.html">Available Rides</a></li>
+                        <li><a href="#">Ride History</a></li>
+                        <li><a href="#">Wallet</a></li>
+                        <li><a href="#">Profile</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Safety</a></li>
+                        <li><a href="#">Community Guidelines</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Download App</h3>
+                    <div class="app-download">
+                        <a href="#" class="app-btn">
+                            <i class="fab fa-google-play"></i>
+                            <span>GET IT ON<br><strong>Google Play</strong></span>
+                        </a>
+                        <a href="#" class="app-btn">
+                            <i class="fab fa-apple"></i>
+                            <span>Download on the<br><strong>App Store</strong></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Get Going System. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Ride Details Modal -->
+    <div class="modal" id="ride-details-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2>Ride Details</h2>
+            </div>
+            <div class="modal-body" id="modal-ride-details">
+                <!-- Ride details will be inserted here by JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn-outline" id="close-modal-btn">Close</button>
+                <button class="btn-primary" id="book-ride-btn">Book Now</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="available_rides.js"></script>
+</body>
+</html>

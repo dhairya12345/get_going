@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GET GOING SYSTEM - FAQs</title>
+    <link rel="stylesheet" href="faq.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">GET GOING</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="how_it_works.html">How It Works</a>
+                <a href="driver_dashboard.html">Drive</a>
+                <a href="rider_dashboard.html">Ride</a>
+                <a href="faq.html" class="active">FAQs</a>
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-outline">Login</a>
+                    <a href="register.html" class="btn btn-primary">Sign Up</a>
+                </div>
+            </div>
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="how_it_works.html">How It Works</a>
+        <a href="driver_dashboard.html">Drive</a>
+        <a href="rider_dashboard.html">Ride</a>
+        <a href="faq.html" class="active">FAQs</a>
+        <div class="mobile-auth">
+            <a href="login.html" class="btn btn-outline">Login</a>
+            <a href="register.html" class="btn btn-primary">Sign Up</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="faq-hero">
+        <div class="container">
+            <h1>Frequently Asked Questions</h1>
+            <p>Find answers to common questions about GET GOING ride-sharing platform</p>
+            <div class="search-box">
+                <input type="text" placeholder="Search questions...">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Categories -->
+    <section class="faq-categories">
+        <div class="container">
+            <div class="category-tabs">
+                <button class="category-btn active" data-category="general">General</button>
+                <button class="category-btn" data-category="driver">For Drivers</button>
+                <button class="category-btn" data-category="rider">For Riders</button>
+                <button class="category-btn" data-category="safety">Safety</button>
+                <button class="category-btn" data-category="payments">Payments</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section class="faq-accordion">
+        <div class="container">
+            <!-- General Questions -->
+            <div class="faq-category active" id="general-faq">
+                <h2 class="category-title">General Questions</h2>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>What is GET GOING?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>GET GOING is a ride-sharing platform that connects drivers with empty seats to passengers traveling in the same direction. It helps drivers earn money by sharing their rides and provides passengers with affordable transportation options.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>How does GET GOING work?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Drivers can post their upcoming trips with available seats, specifying the route, date, time, and price. Passengers can search for rides matching their travel plans and book seats directly through the platform.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Is GET GOING available in my city?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>GET GOING is currently available in most major cities across India. You can check availability by entering your location in the search bar on our homepage.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>How much does it cost to use GET GOING?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Creating an account and browsing rides is completely free. Drivers pay a small service fee (10-15%) only when they successfully complete a ride with passengers. Passengers pay the price set by the driver for their seat.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Driver Questions -->
+            <div class="faq-category" id="driver-faq">
+                <h2 class="category-title">For Drivers</h2>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>How do I become a driver on GET GOING?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>To become a driver, simply sign up for an account, verify your identity and driver's license, and add your vehicle details. Once approved, you can start posting your rides.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>How much can I earn as a driver?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Earnings vary based on how often you drive, the distance of your trips, and the number of passengers you carry. Many drivers earn enough to cover their fuel costs and maintenance expenses.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Can I set my own prices?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Yes, you have full control over your pricing. You can set a price per seat or for the entire ride. Our system will suggest competitive prices based on the route and demand.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>What if passengers cancel at the last minute?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>If a passenger cancels less than 24 hours before the trip, they will be charged a cancellation fee which will be credited to your account.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rider Questions -->
+            <div class="faq-category" id="rider-faq">
+                <h2 class="category-title">For Riders</h2>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>How do I book a ride?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Search for rides matching your route and travel date, select a suitable option, and click "Book Now." You'll need to make payment to confirm your booking.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>How much does a ride cost?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Prices are set by drivers and are typically 30-50% cheaper than traditional taxis or cabs. The exact price is displayed before you book.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Can I cancel my booking?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Yes, you can cancel up to 24 hours before the trip for a full refund. Cancellations within 24 hours may incur a fee.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>How do I contact my driver?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Once your booking is confirmed, you can message the driver directly through our secure messaging system to coordinate pickup details.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Safety Questions -->
+            <div class="faq-category" id="safety-faq">
+                <h2 class="category-title">Safety</h2>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Is GET GOING safe?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Safety is our top priority. All drivers undergo identity verification and license checks. We also have user ratings, trip tracking, and emergency contact features.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>What safety features does GET GOING offer?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>We offer profile verification, real-time ride tracking, emergency assistance, and a robust rating system to ensure safe experiences for everyone.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>What should I do if I feel unsafe during a ride?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>You can use the emergency button in the app to alert authorities, or end the ride at the nearest safe location. Please report any safety concerns to us immediately.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Questions -->
+            <div class="faq-category" id="payments-faq">
+                <h2 class="category-title">Payments</h2>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>What payment methods are accepted?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>We accept all major credit/debit cards, UPI, net banking, and popular digital wallets like Paytm, PhonePe, and Google Pay.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>When is payment deducted for riders?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Payment is collected when you book a ride. If the ride is canceled by the driver, you'll receive a full refund.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>How do drivers receive their earnings?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Earnings are transferred to your registered bank account weekly. You can track all payments in your driver dashboard.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="faq-cta">
+        <div class="container">
+            <h2>Still have questions?</h2>
+            <p>Our support team is ready to help you with any other questions you might have.</p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="btn btn-primary btn-large">Contact Support</a>
+                <a href="how_it_works.html" class="btn btn-secondary btn-large">How It Works</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>GET GOING</h3>
+                    <p>Smart ride-sharing platform connecting drivers with passengers traveling the same way.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="how_it_works.html">How It Works</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="safety.html">Safety Guidelines</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 GET GOING SYSTEM. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="faq.js"></script>
+</body>
+</html>

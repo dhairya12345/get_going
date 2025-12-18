@@ -1,0 +1,660 @@
+
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Going - Earnings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #10b981;
+            --accent-color: #f59e0b;
+            --danger-color: #ef4444;
+            --dark-color: #1f2937;
+            --light-color: #ffffff;
+            --gray-color: #e5e7eb;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --border-radius: 8px;
+            --spacing-unit: 2rem;
+            --compact-spacing: 0.75rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: #f9fafb;
+            color: var(--dark-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: row;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: linear-gradient(180deg, var(--primary-color), #1e40af);
+            color: var(--light-color);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, width 0.3s ease;
+            position: fixed;
+            height: 100vh;
+            z-index: 1000;
+        }
+
+        .sidebar-header {
+            padding: var(--spacing-unit);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: white;
+        }
+
+        .sidebar-header i {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .sidebar-menu {
+            padding: 1rem 0;
+        }
+
+        .menu-item {
+            padding: 1.25rem var(--spacing-unit);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+            text-decoration: none;
+        }
+
+        .menu-item:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: translateX(4px);
+        }
+
+        .menu-item.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-left: 4px solid var(--secondary-color);
+            color: white;
+        }
+
+        .menu-item i {
+            font-size: 1.1rem;
+            width: 1.5rem;
+            text-align: center;
+            color: white;
+        }
+
+        .menu-item span {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: white;
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            transition: margin-left 0.3s ease;
+            padding: var(--spacing-unit);
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem var(--spacing-unit);
+            background: var(--light-color);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 900;
+            margin-bottom: var(--spacing-unit);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            justify-content: flex-end;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: var(--border-radius);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .user-profile:hover {
+            background: var(--gray-color);
+            transform: translateY(-2px);
+        }
+
+        .user-profile img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .user-profile:hover img {
+            transform: scale(1.1);
+        }
+
+        .notification-icon {
+            position: relative;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 1.25rem;
+            color: var(--dark-color);
+        }
+
+        .notification-icon:hover {
+            color: var(--primary-color);
+            transform: scale(1.15);
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: var(--danger-color);
+            color: var(--light-color);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+        }
+
+        .welcome-banner {
+            background: linear-gradient(135deg, var(--primary-color), #3b82f6);
+            color: var(--light-color);
+            padding: var(--spacing-unit);
+            border-radius: var(--border-radius);
+            margin-bottom: calc(var(--spacing-unit) * 1.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .welcome-banner:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .welcome-text h1 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: white;
+        }
+
+        .welcome-text p {
+            font-size: 1rem;
+            opacity: 0.9;
+            color: white;
+        }
+
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: var(--spacing-unit);
+            margin-bottom: calc(var(--spacing-unit) * 1.5);
+        }
+
+        .stat-card {
+            background: var(--light-color);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-unit);
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .stat-info h3 {
+            color: #6b7280;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+
+        .stat-info h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover .stat-info h2 {
+            color: var(--primary-color);
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover .stat-icon {
+            transform: scale(1.1);
+        }
+
+        .earnings { background: rgba(37, 99, 235, 0.1); color: var(--primary-color); }
+        .rides { background: rgba(16, 185, 129, 0.1); color: var(--secondary-color); }
+        .rating { background: rgba(245, 158, 11, 0.1); color: var(--accent-color); }
+
+        .time-period-selector {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: var(--spacing-unit);
+        }
+
+        .time-period-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            background: var(--light-color);
+            border: 1px solid var(--gray-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .time-period-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .time-period-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .earnings-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--light-color);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: var(--spacing-unit);
+        }
+
+        .earnings-table th, 
+        .earnings-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-color);
+        }
+
+        .earnings-table th {
+            background: var(--primary-color);
+            color: white;
+            font-weight: 500;
+        }
+
+        .earnings-table tr:hover {
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .earnings-table .positive {
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .withdraw-btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-left: auto;
+        }
+
+        .withdraw-btn:hover {
+            background: #0e9f6e;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 1200px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .main-content {
+                margin-left: 200px;
+            }
+
+            .welcome-text h1 {
+                font-size: 1.5rem;
+            }
+
+            .stats-cards {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 80px;
+            }
+
+            .sidebar-header h2, .menu-item span {
+                display: none;
+            }
+
+            .menu-item {
+                justify-content: center;
+                padding: 1rem;
+            }
+
+            .menu-item i {
+                margin-right: 0;
+                font-size: 1.3rem;
+            }
+
+            .main-content {
+                margin-left: 80px;
+            }
+
+            .stats-cards {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 220px;
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: var(--compact-spacing);
+            }
+
+            .menu-toggle {
+                display: block;
+                position: fixed;
+                top: 0.75rem;
+                left: 0.75rem;
+                font-size: 1.3rem;
+                z-index: 1001;
+                cursor: pointer;
+                color: var(--primary-color);
+                background: var(--light-color);
+                padding: 0.5rem;
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow);
+            }
+
+            .welcome-banner {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+                padding: var(--compact-spacing);
+            }
+
+            .welcome-text h1 {
+                font-size: 1.25rem;
+            }
+
+            .welcome-text p {
+                font-size: 0.85rem;
+            }
+
+            .stats-cards {
+                grid-template-columns: 1fr;
+                gap: var(--compact-spacing);
+            }
+
+            .stat-info h2 {
+                font-size: 1.5rem;
+            }
+
+            .time-period-selector {
+                flex-wrap: wrap;
+            }
+
+            .top-nav {
+                padding: var(--compact-spacing);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .welcome-text h1 {
+                font-size: 1.1rem;
+            }
+
+            .welcome-text p {
+                font-size: 0.8rem;
+            }
+
+            .stat-info h2 {
+                font-size: 1.3rem;
+            }
+
+            .stat-info h3 {
+                font-size: 0.8rem;
+            }
+
+            .top-nav {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .user-profile {
+                padding: 0.5rem;
+            }
+
+            .user-profile img {
+                width: 32px;
+                height: 32px;
+            }
+
+            .notification-icon {
+                margin-right: 0.75rem;
+            }
+
+            .earnings-table th, 
+            .earnings-table td {
+                padding: 0.75rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .stats-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-info h2 {
+                font-size: 1.2rem;
+            }
+
+            .time-period-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-car"></i>
+                <h2>Get Going</h2>
+            </div>
+            <div class="sidebar-menu">
+                <a href="dashboard.html" class="menu-item">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="my-rides.html" class="menu-item">
+                    <i class="fas fa-car"></i>
+                    <span>My Rides</span>
+                </a>
+                <a href="earnings.html" class="menu-item active">
+                    <i class="fas fa-wallet"></i>
+                    <span>Earnings</span>
+                </a>
+                <a href="driver-details.html" class="menu-item">
+                    <i class="fas fa-user"></i>
+                    <span>Driver Ride Details</span>
+                </a>
+                <a href="settings.html" class="menu-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+                <a href="help.html" class="menu-item">
+                    <i class="fas fa-question-circle"></i>
+                    <span>Help & Support</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="top-nav">
+                <div class="nav-left">
+                    <div class="menu-toggle" id="menuToggle" aria-label="Toggle sidebar">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+                <div class="nav-right">
+                    <div class="notification-icon">
+                        <i class="fas fa-bell"></i>
+                        <div class="notification-badge">3</div>
+                    </div>
+                   <div class="user-profile">
+                        <img src="{% static user_data.profile_img%}" alt="User Profile">
+                        <span>{{user_data.name}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-content">
+                <div class="content-section active" id="earnings">
+                    <div class="welcome-banner">
+                        <div class="welcome-text">
+                            <h1>Earnings</h1>
+                            <p>Track your income and performance</p>
+                        </div>
+                        <button class="withdraw-btn" id="withdrawBtn">
+                            <i class="fas fa-rupee-sign"></i>
+                            Withdraw Earnings
+                        </button>
+                    </div>
+
+                    <div class="stats-cards">
+                        <div class="stat-card" id="weeklyEarnings">
+                            <div class="stat-info">
+                                <h3>This Week</h3>
+                                <h2>₹{{lastweek}}</h2>
+                            </div>
+                            <div class="stat-icon earnings">
+                                <i class="fas fa-rupee-sign"></i>
+                            </div>
+                        </div>
+                        <div class="stat-card" id="monthlyEarnings">
+                            <div class="stat-info">
+                                <h3>This Month</h3>
+                                <h2>₹{{lastmonth}}</h2>
+                            </div>
+                            <div class="stat-icon earnings">
+                                <i class="fas fa-rupee-sign"></i>
+                            </div>
+                        </div>
+                        <div class="stat-card" id="totalRides">
+                            <div class="stat-info">
+                                <h3>Total Rides</h3>
+                                <h2>{{totalride}}</h2>
+                            </div>
+                            <div class="stat-icon rides">
+                                <i class="fas fa-car"></i>
+                            </div>
+                        </div>
+                       
+                    </div>
+
+                  
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+   

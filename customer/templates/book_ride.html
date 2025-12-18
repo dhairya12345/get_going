@@ -1,0 +1,266 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Going System | Book a Ride</title>
+    <link rel="stylesheet" href="{% static 'css/book_ride.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="user_home.html" class="logo">GET GOING</a>
+            <div class="nav-links">
+                <a href="user_home.html"><i class="fas fa-home"></i> Home</a>
+                <a href="#"><i class="fas fa-history"></i> Ride History</a>
+                <a href="#"><i class="fas fa-wallet"></i> Wallet</a>
+                <div class="dropdown">
+                    <button class="dropbtn">
+                        <i class="fas fa-user-circle"></i> Profile <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#"><i class="fas fa-user"></i> My Account</a>
+                        <a href="#"><i class="fas fa-cog"></i> Settings</a>
+                        <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="book-ride-page">
+        <div class="container">
+            <!-- Search Section -->
+            <section class="search-section">
+                <h1>Book Your Ride</h1>
+                <p>Find the perfect ride for your journey</p>
+                
+                <form class="search-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="source"><i class="fas fa-map-marker-alt"></i> From</label>
+                            <input type="text" id="source" placeholder="Enter pickup location" required>
+                            <div class="suggestions"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="destination"><i class="fas fa-flag-checkered"></i> To</label>
+                            <input type="text" id="destination" placeholder="Enter drop location" required>
+                            <div class="suggestions"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date"><i class="fas fa-calendar-alt"></i> Date</label>
+                            <input type="date" id="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time"><i class="fas fa-clock"></i> Time</label>
+                            <input type="time" id="time" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="seats"><i class="fas fa-users"></i> Seats</label>
+                            <select id="seats" required>
+                                <option value="1">1 Seat</option>
+                                <option value="2">2 Seats</option>
+                                <option value="3">3 Seats</option>
+                                <option value="4">4 Seats</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary search-btn">
+                        <span class="btn-text">Search Rides</span>
+                        <span class="loading-spinner" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </span>
+                    </button>
+                </form>
+            </section>
+
+            <!-- Filters Section -->
+            <section class="filters-section">
+                <div class="filters-header">
+                    <h2>Filter Rides</h2>
+                    <button class="btn-outline reset-filters">Reset All</button>
+                </div>
+                
+                <div class="filter-options">
+                    <div class="filter-group">
+                        <h3>Price Range</h3>
+                        <div class="price-range">
+                            <input type="range" id="price-range" min="50" max="1000" step="50" value="500">
+                            <div class="price-values">
+                                <span>₹50</span>
+                                <span id="current-price">₹500</span>
+                                <span>₹1000</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h3>Vehicle Type</h3>
+                        <div class="vehicle-types">
+                            <label class="vehicle-option">
+                                <input type="checkbox" name="vehicle-type" value="hatchback" checked>
+                                <span class="checkmark"></span>
+                                <i class="fas fa-car"></i> Hatchback
+                            </label>
+                            <label class="vehicle-option">
+                                <input type="checkbox" name="vehicle-type" value="sedan" checked>
+                                <span class="checkmark"></span>
+                                <i class="fas fa-car"></i> Sedan
+                            </label>
+                            <label class="vehicle-option">
+                                <input type="checkbox" name="vehicle-type" value="suv" checked>
+                                <span class="checkmark"></span>
+                                <i class="fas fa-car"></i> SUV
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h3>Amenities</h3>
+                        <div class="amenities">
+                            <label class="amenity-option">
+                                <input type="checkbox" name="amenity" value="ac">
+                                <span class="checkmark"></span>
+                                <i class="fas fa-snowflake"></i> AC
+                            </label>
+                            <label class="amenity-option">
+                                <input type="checkbox" name="amenity" value="wifi">
+                                <span class="checkmark"></span>
+                                <i class="fas fa-wifi"></i> WiFi
+                            </label>
+                            <label class="amenity-option">
+                                <input type="checkbox" name="amenity" value="charging">
+                                <span class="checkmark"></span>
+                                <i class="fas fa-bolt"></i> Charging
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section">
+                <div class="results-header">
+                    <h2>Available Rides</h2>
+                    <div class="sort-options">
+                        <label for="sort-by">Sort by:</label>
+                        <select id="sort-by">
+                            <option value="price-low">Price (Low to High)</option>
+                            <option value="price-high">Price (High to Low)</option>
+                            <option value="departure-early">Departure (Earliest)</option>
+                            <option value="departure-late">Departure (Latest)</option>
+                            <option value="rating">Rating</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="loading-state" id="loading-results">
+                    <div class="loading-spinner">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                    <p>Finding the best rides for you...</p>
+                </div>
+                
+                <div class="no-results" id="no-results" style="display: none;">
+                    <img src="8.png" alt="No results found">
+                    <h3>No rides found</h3>
+                    <p>Try adjusting your search filters or search again later</p>
+                    <button class="btn-primary" id="adjust-search">Adjust Search</button>
+                </div>
+                
+                <div class="rides-list" id="rides-list">
+                    <!-- Ride cards will be inserted here by JavaScript -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>GET GOING</h3>
+                    <p>Ride-sharing made simple, affordable, and eco-friendly.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="user_home.html">Home</a></li>
+                        <li><a href="book_ride.html">Book Ride</a></li>
+                        <li><a href="#">History</a></li>
+                        <li><a href="#">Wallet</a></li>
+                        <li><a href="#">Profile</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Safety</a></li>
+                        <li><a href="#">Community Guidelines</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Download App</h3>
+                    <div class="app-download">
+                        <a href="#" class="app-btn">
+                            <i class="fab fa-google-play"></i>
+                            <span>GET IT ON<br><strong>Google Play</strong></span>
+                        </a>
+                        <a href="#" class="app-btn">
+                            <i class="fab fa-apple"></i>
+                            <span>Download on the<br><strong>App Store</strong></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Get Going System. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Ride Details Modal -->
+    <div class="modal" id="ride-details-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2>Ride Details</h2>
+            </div>
+            <div class="modal-body" id="modal-ride-details">
+                <!-- Ride details will be inserted here by JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn-outline" id="close-modal-btn">Close</button>
+                <button class="btn-primary" id="request-ride-btn">Request Ride</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/book_ride1.js'%}"></script>
+</body>
+</html>

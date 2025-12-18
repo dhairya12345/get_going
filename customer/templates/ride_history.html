@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Going System | Ride History</title>
+    <link rel="stylesheet" href="ride_history.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="user_home.html" class="logo">GET GOING</a>
+            <div class="nav-links">
+                <a href="user_home.html"><i class="fas fa-home"></i> Home</a>
+                <a href="available_rides.html"><i class="fas fa-car"></i> Available Rides</a>
+                <a href="ride_history.html" class="active"><i class="fas fa-history"></i> Ride History</a>
+                <a href="#"><i class="fas fa-wallet"></i> Wallet</a>
+                <div class="dropdown">
+                    <button class="dropbtn">
+                        <i class="fas fa-user-circle"></i> Profile <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#"><i class="fas fa-user"></i> My Account</a>
+                        <a href="#"><i class="fas fa-cog"></i> Settings</a>
+                        <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="ride-history-page">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1>Your Ride History</h1>
+                <p>View details of your past rides</p>
+            </div>
+
+            <!-- Filter Options -->
+            <div class="filter-options">
+                <div class="filter-group">
+                    <label for="time-period">Time Period:</label>
+                    <select id="time-period">
+                        <option value="all">All Time</option>
+                        <option value="month">Last Month</option>
+                        <option value="week">Last Week</option>
+                        <option value="today">Today</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="sort-by">Sort By:</label>
+                    <select id="sort-by">
+                        <option value="recent">Most Recent</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="price-high">Price (High to Low)</option>
+                        <option value="price-low">Price (Low to High)</option>
+                        <option value="rating">Rating</option>
+                    </select>
+                </div>
+                <button class="btn-outline" id="reset-filters">
+                    <i class="fas fa-sync-alt"></i> Reset
+                </button>
+            </div>
+
+            <!-- Ride History List -->
+            <section class="rides-history">
+                <div class="rides-list" id="rides-list">
+                    <!-- Ride history items will be inserted here by JavaScript -->
+                </div>
+
+                <div class="loading-state" id="loading-state">
+                    <div class="loading-spinner">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                    <p>Loading your ride history...</p>
+                </div>
+
+                <div class="no-results" id="no-results" style="display: none;">
+                    <img src="8.png" alt="No results found">
+                    <h3>No rides found</h3>
+                    <p>You haven't taken any rides yet</p>
+                    <a href="available_rides.html" class="btn-primary">Find Rides</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>GET GOING</h3>
+                    <p>Ride-sharing made simple, affordable, and eco-friendly.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="user_home.html">Home</a></li>
+                        <li><a href="available_rides.html">Available Rides</a></li>
+                        <li><a href="ride_history.html">Ride History</a></li>
+                        <li><a href="#">Wallet</a></li>
+                        <li><a href="#">Profile</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Safety</a></li>
+                        <li><a href="#">Community Guidelines</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Download App</h3>
+                    <div class="app-download">
+                        <a href="#" class="app-btn">
+                            <i class="fab fa-google-play"></i>
+                            <span>GET IT ON<br><strong>Google Play</strong></span>
+                        </a>
+                        <a href="#" class="app-btn">
+                            <i class="fab fa-apple"></i>
+                            <span>Download on the<br><strong>App Store</strong></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Get Going System. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Ride Details Modal -->
+    <div class="modal" id="ride-details-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2>Ride Details</h2>
+            </div>
+            <div class="modal-body" id="modal-ride-details">
+                <!-- Ride details will be inserted here by JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn-outline" id="close-modal-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rating Modal -->
+    <div class="modal" id="rating-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2>Rate Your Ride</h2>
+            </div>
+            <div class="modal-body" id="modal-rating-form">
+                <div class="rating-container">
+                    <div class="stars" id="rating-stars">
+                        <i class="far fa-star" data-rating="1"></i>
+                        <i class="far fa-star" data-rating="2"></i>
+                        <i class="far fa-star" data-rating="3"></i>
+                        <i class="far fa-star" data-rating="4"></i>
+                        <i class="far fa-star" data-rating="5"></i>
+                    </div>
+                    <p class="rating-text">Tap to rate</p>
+                </div>
+                <div class="form-group">
+                    <label for="review-text">Your Review (Optional)</label>
+                    <textarea id="review-text" placeholder="Share your experience..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-outline" id="cancel-rating-btn">Cancel</button>
+                <button class="btn-primary" id="submit-rating-btn">Submit Rating</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="ride_history.js"></script>
+</body>
+</html>
